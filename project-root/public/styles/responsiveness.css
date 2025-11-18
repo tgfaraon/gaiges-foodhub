@@ -1,0 +1,218 @@
+@media (max-width: 880px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .navbar .navbar-hamburger {
+    display: block;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background: rgb(212, 191, 157);
+    display: none;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .navbar ul.open {
+    display: flex;
+  }
+
+  .navbar li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+  }
+
+  .explore {
+    display: none; /* optional: hide Explore dropdown on mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    margin: 0 !important;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+/* Responsive: stack image above text on small screens */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-image {
+    width: 100%;
+    max-width: 560px;
+    flex: 0 0 auto;
+    justify-content: flex-start; /* restore top alignment on mobile */
+  }
+  .about-text {
+    width: 100%;
+    text-align: left;
+    margin-top: 1rem;
+    justify-content: flex-start; /* normal flow on small screens */
+  }
+}
+
+/* Desktop: show dropdown on hover or keyboard focus-within */
+@media (min-width: 881px) {
+  /* hide hamburger on large screens */
+  .hamburger { display: none; }
+
+  /* position nav-links as a dropdown under Explore, hidden by default */
+  .explore .nav-links {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: rgb(212, 191, 157);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1200;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  max-height: none;
+  overflow-y: auto;
+}
+
+.explore.open .nav-links {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+}
+
+/* Optional: also show on hover or focus-within for desktop */
+@media (min-width: 881px) {
+  .explore:hover .nav-links,
+  .explore:focus-within .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* Mobile: keep the slide-out panel behavior (existing rules remain) */
+@media (max-width: 880px) {
+  /* ensure explore-toggle sits next to hamburger if desired */
+  .explore { display: none; } /* optional: hide Explore on small screens to avoid duplicate controls */
+}
+
+/* Space out Explore nav buttons evenly */
+#explore #nav-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+}
+#explore #nav-links li {
+  list-style: none;
+}
+/* Ensure links take only necessary space while remaining evenly distributed */
+#explore #nav-links a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Position the standalone subscribe CTA to the far right of the navbar */
+nav .subscribe-button {
+  margin-left: auto;      /* push this CTA to the very right */
+  margin-right: 1.5rem;   /* spacing from the edge */
+  align-self: center;
+  display: inline-block;
+}
+
+/* Right-side actions (CTA + login) */
+.nav-actions {
+  margin-left: auto; /* push to far right */
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Subscribe CTA already styled; ensure reasonable size here */
+.nav-actions .subscribe-button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 520px) {
+  .subscribe-page {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  #spa-subscribe-form button[type="submit"],
+  #subscribe-form .subscribe-button {
+    width: 100%;
+  }
+}
+
+/* Responsive stacking */
+@media (max-width: 880px) {
+  .login-images-left {
+    display: none !important; /* force override */
+    position: static !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .login-layout {
+    margin-left: 0 !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .login-right {
+    width: 100%;
+    max-width: 90%;
+    padding: 2rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+  }
+
+  .subscribe-header {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}

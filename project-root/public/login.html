@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+<body class="subscribe-page">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="logo" href="/">Gaige's Food Hub</a>
+    <button class="hamburger" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+    <div class="explore" id="explore">
+      <button class="explore-toggle" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+      <ul id="nav-links" class="nav-links" role="menubar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/subscribe.html">Get Started</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-actions" id="nav-actions">
+      <a id="navbar-subscribe" class="subscribe-button" href="/subscribe.html" aria-label="Subscribe">Cook Now!</a>
+    </div>
+  </nav>
+
+  <h1 class="subscribe-header">Welcome!</h1>
+
+<!-- Images placed outside the login container -->
+<div class="login-images-left">
+  <img src="../assets/tomato-soup.jpg" alt="tomato soup" />
+</div>
+
+<!-- Login form container -->
+<div class="login-layout">
+  <div class="login-right">
+    <div class="subscribe-inner">
+      <h2>Log In to Your Account</h2>
+    </div>
+
+    <form id="login-form" class="subscribe-form" autocomplete="off">
+      <p>Please log in to access your personalized dashboard and saved recipes.</p>
+
+      <input type="text" id="user" name="user" placeholder="Username" class="form-input" autocomplete="off" readonly required />
+
+      <div class="password-wrapper">
+        <input type="password" id="pass" name="pass" placeholder="Password" class="form-input" autocomplete="new-password" readonly required />
+        <button type="button" id="toggle-password" aria-label="Toggle password visibility">👁️</button>
+      </div>
+
+      <label class="remember-me">
+        <input type="checkbox" id="remember" />
+        Remember me
+      </label>
+
+      <button type="submit" class="subscribe-button">Log In</button>
+
+      <p><a href="/forgot-password.html" class="forgot-link">Forgot password?</a></p>
+      <p id="login-feedback" class="subscribe-feedback"></p>
+    </form>
+  </div>
+</div>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+
+    // ✅ Re-enable fields after DOM loads to block Chrome autofill
+    user.removeAttribute('readonly');
+    pass.removeAttribute('readonly');
+
+    const rememberFlag = localStorage.getItem('rememberMeChecked');
+    const remembered = JSON.parse(localStorage.getItem('rememberedLogin'));
+    const rememberCheckbox = document.getElementById('remember');
+
+    setTimeout(() => {
+      if (rememberFlag === 'true' && remembered) {
+        user.value = remembered.username || '';
+        pass.value = remembered.password || '';
+        rememberCheckbox.checked = true;
+        console.log('🔁 Autofilled remembered credentials');
+      } else {
+        user.value = '';
+        pass.value = '';
+        rememberCheckbox.checked = false;
+        console.log('🧹 Cleared autofill — user not remembered');
+      }
+    }, 100);
+
+    // 👁️ Password visibility toggle
+    const toggleBtn = document.getElementById('toggle-password');
+    if (toggleBtn && pass) {
+      toggleBtn.addEventListener('click', () => {
+        const type = pass.type === 'password' ? 'text' : 'password';
+        pass.type = type;
+      });
+    }
+  });
+</script>
+  <script src="/login.js" defer></script>
+</body>
+</html>

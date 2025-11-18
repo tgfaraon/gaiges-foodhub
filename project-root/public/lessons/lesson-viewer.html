@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson Viewer</title>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="/members.html">← Back to Dashboard</a>
+  </nav>
+
+  <main class="lesson-viewer">
+    <h1 id="lesson-title">Loading...</h1>
+    <p id="lesson-content"></p>
+
+    <!-- Video Embed -->
+    <div id="video-container"></div>
+
+    <!-- Quiz Section -->
+    <section id="quiz-section">
+      <h2>Quiz</h2>
+      <div id="quiz-questions"></div>
+      <button id="submit-quiz" class="subscribe-button">Submit Quiz</button>
+      <p id="quiz-result"></p>
+    </section>
+  </main>
+
+  <script src="lesson-viewer.js" defer></script>
+</body>
+</html>

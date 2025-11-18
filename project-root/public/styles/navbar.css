@@ -1,0 +1,162 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgb(212, 191, 157);
+  /* use explicit height instead of min-height + vertical padding to avoid extra gap */
+  height: var(--navbar-height);
+  padding: 0 0; /* keep horizontal padding elsewhere if needed */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.navbar .navbar-logo {
+  color: #63372c;
+  font-weight: bold;
+  font-size: 1.95rem;          /* slightly larger to match taller navbar */
+  letter-spacing: 2px;
+  margin-left: 2.2rem;
+  margin-right: 2.7rem;
+  /* Prevent logo from shrinking on small screens */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  line-height: var(--navbar-height); /* vertically center text in the taller navbar */
+  transition: opacity 0.2s;
+  -webkit-text-stroke-width: 1.5px;
+  /* Adjust width as desired */
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  /* Set the outline color */
+  color: white;
+  /* Set the text fill color */
+}
+
+.navbar a {
+  color: #64372c;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-family: baskerville, serif;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  background: rgb(92, 58, 48);
+  color: #fff;
+}
+
+.nav-links {
+  max-height: 0;
+  overflow: hidden;
+ transition: max-height 0.4s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.nav-links.open {
+  max-height: 500px; /* adjust as needed */
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.explore {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Explore toggle button */
+.explore-toggle {
+  background: rgb(212, 191,157); 
+  border: none;
+  color: #63372c;
+  font-weight: 700;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.explore-toggle:focus {
+  outline: 2px solid rgba(99,55,44,0.2);
+  outline-offset: 2px;
+}
+
+.explore.open .nav-links {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.explore .nav-links a {
+  padding: 10px;
+  color: #333;
+  background: transparent;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.explore .nav-links a:hover,
+.explore .nav-links a:focus {
+  background: #64372c;
+  color: #ffffff;
+}
+
+/* CTA inside dropdown */
+.explore .nav-links .subscribe-button {
+  display: block;
+  padding: 10px;
+  color: #64372c;
+  border-radius: 6px;
+}
+
+#explore #nav-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+}
+#explore #nav-links li {
+  list-style: none;
+}
+/* Ensure links take only necessary space while remaining evenly distributed */
+#explore #nav-links a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+}
+
+nav .subscribe-button {
+  margin-left: auto;      /* push this CTA to the very right */
+  margin-right: 1.5rem;   /* spacing from the edge */
+  align-self: center;
+  display: inline-block;
+}
+
+/* Right-side actions (CTA + login) */
+.nav-actions {
+  margin-left: auto; /* push to far right */
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Subscribe CTA already styled; ensure reasonable size here */
+.nav-actions .subscribe-button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
