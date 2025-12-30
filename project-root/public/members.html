@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Members Dashboard</title>
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <link rel="stylesheet" href="/styles/animations.css" />
+  <link rel="stylesheet" href="/styles/modals.css" />
+  <style>
+    .dropdown-content.hidden { display: none; }
+    .dropdown-content { margin-top: 10px; }
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 5px;
+      padding: 0;
+      color: #333;
+    }
+    .dropdown-toggle:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="logo" href="/">Gaige's Food Hub</a>
+    <div class="nav-actions">
+      <div class="explore" id="explore">
+        <button class="explore-toggle" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+        <ul id="nav-links" class="nav-links" role="menubar">
+          <li><a href="/#top">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/login.html">Log Out</a></li>
+        </ul>
+      </div>
+      <div class="member-dropdown">
+        <button class="dropdown-toggle avatar-button" data-target="member-menu">
+          <img id="member-avatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User" />
+          <span id="avatar-caret">▾</span>
+        </button>
+        <div id="member-menu" class="dropdown-content hidden">
+          <div id="member-greeting" style="padding: 10px 16px; font-weight: bold; color:#573026">Hi, Member!</div>
+          <a href="/admin/admin.html" id="admin-dashboard-link" class="dropdown-item hidden">Admin Dashboard</a>
+          <a href="#lesson-section">Lessons</a>
+          <a href="#saved-section">Saved Recipes & Lessons</a>
+          <a href="#preferences-dropdown">Preferences</a>
+          <a href="#account-dropdown">Account Settings</a>
+          <a href="/" id="logout-link">Log Out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <aside class="dashboard-sidebar">
+    <img src="/assets/churrasco.jpg" alt="Decorative" class="sidebar-image" />
+  </aside>  
+
+  <h2 class="subscribe-header" id="welcome-message">Welcome, Member!</h2>
+
+  <section class="dashboard-section">
+    <!-- Lessons -->
+    <div class="dashboard-card">
+      <h2 class="dashboard-header">Lessons</h2>
+      <p style="color:#573026;">
+        Welcome to the training hub. Complete each lesson to unlock the next and track your culinary progress.
+      </p>
+
+      <!-- Progress bar -->
+      <div class="lesson-progress-container">
+        <label for="progress-bar" style="color:#573026;">Your Journey So Far</label>
+        <div class="progress-bar-container">
+          <div id="progress-bar" class="progress-bar-fill"></div>
+        </div>
+        <p id="progress-label" class="progress-label">0% Complete</p>
+      </div>
+
+      <!-- ✅ Lesson links now point into SPA -->
+      <div id="lesson-section" class="lesson-grid">
+        <a class="lesson-card" href="/lessons/lesson-viewer.html?id=lesson-1">Lesson 1</a>
+        <a class="lesson-card" href="/lessons/lesson-viewer.html?id=lesson-2">Lesson 2</a>
+        <a class="lesson-card" href="/lessons/lesson-viewer.html?id=lesson-3">Lesson 3</a>
+      </div>
+
+      <!-- Milestones & badges -->
+      <section id="milestone-section">
+        <div class="dropdown-section">
+          <button class="dropdown-toggle" data-target="badge-dropdown">
+            <span>Unlocked Badges</span>
+            <span id="badge-caret">▸</span>
+          </button>
+          <div id="badge-dropdown" class="dropdown-content hidden">
+            <div id="badge-container" class="badge-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <hr style="border: none; border-top: 1px solid #ddd; margin: 1rem 0;" />
+      <button id="view-all-badges">View All Badges</button>
+
+      <div id="badge-modal" class="modal hidden">
+        <div class="modal-content">
+          <span id="close-badge-modal" class="close">&times;</span>
+          <h3>All Available Badges</h3>
+          <ul>
+            <li>🥬 Joined Gaige's Food Hub</li>
+            <li>🍳 First Lesson Complete</li>
+            <li>🥘 Halfway Through!</li>
+            <li>🎉 Master Chef!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Content -->
+    <div class="dashboard-card" id="saved-section">
+      <h2 class="dashboard-header">Saved Recipes & Lessons</h2>
+      <div class="filter-buttons">
+        <button class="subscribe-button" data-filter="all">All</button>
+        <button class="subscribe-button" data-filter="recipe">Recipes</button>
+        <button class="subscribe-button" data-filter="lesson">Lessons</button>
+      </div>
+      <div id="saved-list" class="saved-grid"></div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="dashboard-card">
+      <h2 class="dashboard-header">Preferences</h2>
+      <button class="dropdown-toggle" data-target="preferences-dropdown">Edit Preferences ▾</button>
+      <div id="preferences-dropdown" class="dropdown-content hidden">
+        <label><input type="checkbox" id="pref-vegetarian"> Vegetarian</label>
+        <label><input type="checkbox" id="pref-glutenfree"> Gluten-Free</label>
+        <label><input type="checkbox" id="pref-quickmeals"> Quick Meals</label>
+        <label><input type="checkbox" id="pref-budget"> Budget-Friendly</label>
+        <label><input type="checkbox" id="pref-mealprep"> Meal Prep in Bundles</label>
+        <button id="save-preferences" class="subscribe-button">Save Preferences</button>
+      </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="dashboard-card">
+      <h2 class="dashboard-header">Account Settings</h2>
+      <button class="dropdown-toggle" data-target="account-dropdown">Manage Account ▾</button>
+      <div id="account-dropdown" class="dropdown-content hidden">
+        <h4>👤 Personal Details</h4>
+        <label>First Name: <input type="text" id="account-firstname"></label>
+        <label>Date of Birth: <input type="date" id="account-dob"></label>
+        <label>Phone: <input type="tel" id="account-phone"></label>
+
+        <h4>🖼️ Profile Picture</h4>
+        <input type="file" id="account-avatar" accept="image/*" />
+        <button id="upload-avatar" class="subscribe-button">Upload Avatar</button>
+
+        <h4>🔐 Login & Security</h4>
+        <label>Email: <input type="email" id="account-email"></label>
+        <label>New Password: <input type="password" id="account-password"></label>
+        <button id="update-security" class="subscribe-button">Update Login Info</button>
+
+        <h4>🔒 Two-Step Verification</h4>
+        <label><input type="checkbox" id="account-2fa"> Enable 2FA</label>
+        <button id="toggle-2fa" class="subscribe-button">Save 2FA Settings</button>
+
+        <h4>💻 Connected Devices</h4>
+        <ul id="device-list"></ul>
+
+        <h4>⚠️ Account Management</h4>
+        <button id="deactivate-account" class="subscribe-button danger">Deactivate Account</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="scripts/members.js" defer></script>
+</body>
+</html>

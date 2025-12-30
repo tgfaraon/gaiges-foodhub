@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaige's Food Hub</title>
+
+  <!-- Consolidated global styles (from project-root/public/styles/) -->
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <link rel="stylesheet" href="/styles/animations.css" />
+  <link rel="stylesheet" href="/styles/modals.css" />
+</head>
+<body id="top">
+  <div id="lesson-editor-root"></div>
+  <header class="header" style="background-color: rgb(212, 191,157); display: flex; align-items: center; justify-content: center; margin-top: 4rem;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <h1 style="color: rgb(194, 146, 107);">Welcome to Gaige's Food Hub</h1>
+      <p style="color: white; margin-top: 0.5rem;">Your one-stop destination for delicious food from your own hands!</p>
+    </div>
+  </header>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="logo" href="#top">Gaige's Food Hub</a>
+    <button class="hamburger" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+    <div class="explore" id="explore">
+      <button class="explore-toggle" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+      <ul id="nav-links" class="nav-links" role="menubar">
+        <li><a href="#top">Home</a></li>
+        <li><a href="/subscribe.html">Get Started</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-actions" id="nav-actions">
+      <a id="navbar-subscribe" class="subscribe-button" href="/subscribe.html" aria-label="Register">Cook Now!</a>
+      <div class="login" id="nav-login">
+        <a href="/login.html" class="login-button" aria-label="Login">Log in</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="about" id="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="/assets/saltimbocca.jpg" alt="Delicious Food" />
+        <img src="/assets/Burrata.jpg" alt="Burrata" />
+      </div>
+      <div class="about-text" style="display: flex; flex-direction: column; align-items: center;">
+        <h2>About Us</h2>
+        <ul class="lists">
+          <li>
+            <h3 class="list-title" style="color: #63372c">What we do:</h3>
+            <p>At Gaige's Food Hub, we provide professional cooking instructions so you can learn to prepare delicious meals like a pro from the comfort of your own home.</p>
+          </li>
+          <li>
+            <h3 class="list-title" style="color: #63372c">Our Mission:</h3>
+            <p>Our mission is to empower home cooks of all skill levels to create restaurant-quality dishes with ease and confidence.</p>
+          </li>
+          <li>
+            <h3 class="list-title" style="color: #63372c">What you will learn:</h3>
+            <p>By joining Gaige's Food Hub, you will learn essential cooking techniques, how to select and use quality ingredients, and how to master a variety of recipes from simple weeknight dinners to impressive gourmet dishes.</p>
+            <p style="margin-top: 2rem;">We understand that cooking can be intimidating, especially for those who are new to the kitchen. That's why we offer a wide range of resources and support to help our members succeed.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- No React script here: landing page stays static -->
+  <script src="/public/index.js" defer></script>
+</body>
+</html>

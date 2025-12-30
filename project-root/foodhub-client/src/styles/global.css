@@ -1,0 +1,500 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --navbar-height: 64px; /* increased from 56px to make navbar slightly bigger */
+}
+
+body {
+  background-color: rgb(212, 191,157);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-top: var(--navbar-height); /* reserve space equal to navbar height */
+}
+
+.header {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(../assets/culinarybackground.jpg);
+  background-size: 110% 130%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+  font-family: 'serif', 'baskerville', 'Times New Roman', 'Georgia', sans-serif, Courier, monospace;
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.header-container {
+  color: rgb(212, 191,157);
+  font-size: clamp(1.5em, 4vw, 2.5em);
+  margin: 0;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  display: inline-block;
+  line-height: 0;
+  background-attachment: fixed;
+  width: 50%;
+  align-items: center;
+  text-align: center;
+}
+
+.header h1 {
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 4rem);
+  -webkit-text-stroke-width: 1.5px;
+  /* Adjust width as desired */
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  /* Set the outline color */
+  color: white;
+  /* Set the text fill color */
+}
+
+.header p {
+  font-weight: 100;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: rgb(184, 184, 184);
+  margin-bottom: 2rem;
+}
+
+.header button {
+  background-color: rgb(212, 191, 157);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: 800;
+  text-transform: uppercase;
+  position: relative; /* ensure button creates stacking context */
+  z-index: 2;          /* sit above background/overlays */
+}
+
+.header button:hover {
+  background-color: rgb(92, 58, 48);
+  color: rgb(212, 191,157);
+  transform: scale(1.05) translateY(-2px);
+  /* removed glowing box-shadow to eliminate brown/orange box */
+  box-shadow: none;
+}
+
+.about {
+  min-height: 60vh; /* let header occupy space, about can grow */
+  background-color: rgb(212, 191, 157);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem; /* add internal spacing instead of forcing viewport height */
+  background-color: rgb(212, 191,157); /* keep background consistent */
+  box-sizing: border-box;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* align children to their bottom edges so images line up with paragraphs */
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  box-sizing: border-box;
+  flex-direction: row; /* ensure row layout: image left, text right */
+}
+
+/* ensure text sits to the right of the image with breathing room */
+.about-text {
+  display: inline-block;
+  color: #63372c;
+  margin-left: 1.5rem; /* reduced from large value */
+  font-family: 'serif', 'baskerville', 'Times New Roman', 'Georgia', sans-serif, Courier, monospace;
+  font-size: 1.15rem;
+  max-width: 720px;
+  box-sizing: border-box;
+}
+
+/* about-image column: push images toward the bottom so bottoms align with text */
+.about-image {
+  flex: 0 0 42%;      /* slightly narrower column */
+  max-width: 480px;   /* reduce max width */
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;        /* smaller gap between stacked images */
+  justify-content: flex-end; /* align image stack to the bottom */
+}
+
+/* make stacked images a slightly smaller responsive box and crop by cover */
+.about-image img {
+  width: 100%;
+  height: clamp(180px, 30vw, 420px); /* slightly smaller responsive height */
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 1rem 1rem 0 4px #63372c;
+}
+
+/* Lists and headings inside about-text */
+.about-text h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #63372c;
+}
+
+.about-text .lists { 
+    padding-left: 0; 
+    list-style: none; 
+}
+
+.about-text h2 {
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 4rem);
+  -webkit-text-stroke-width: 1.5px;
+  /* Adjust width as desired */
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  /* Set the outline color */
+  color: rgb(194, 146, 107);
+  /* Set the text fill color */
+}
+
+.about-text h3 {
+  margin-bottom: 0.1em;
+  font-size: 2.75rem;
+}
+
+.subscribe-header {
+  display: block;
+  text-align: center;
+  margin: 0 auto 2rem;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 4rem);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  color: rgb(194, 146, 107);
+  max-width: 90%;
+  line-height: 1;
+}
+
+.subscribe-hero p {
+  text-align: center;
+  font-size: 1.2rem; /* bumped up from 1rem */
+  color: #63372c;
+  margin: 0 auto 1.5rem;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.outlined-header {
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 4rem);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  color: rgb(194, 146, 107);
+  text-align: center;
+  margin: 2rem auto 1rem;
+}
+
+.themed-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 24px;
+}
+
+.progress-fill {
+  background-color: #4caf50; /* green bar */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: white;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+.progress-label {
+  font-size: 12px;
+}
+
+.dashboard-sidebar {
+  position: absolute;
+  top: 190px; /* match header height */
+  left: 0;
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-left: 2rem;
+  z-index: 0;
+}
+
+.sidebar-image {
+  width: 100%;
+  height: clamp(800px, 50vh, 600px);
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 1rem 1rem 0 4px #63372c;
+}
+
+/* === Login page left images (same measurements) === */
+.login-images-left {
+  position: absolute;
+  top: 70px; /* adjust based on header height */
+  left: 0;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-left: 2rem;
+  z-index: 0;
+}
+
+.login-images-left img {
+  width: 100%;
+  height: clamp(180px, 30vw, 420px);
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 1rem 1rem 0 4px #63372c;
+}
+
+/* === Responsive override: hide side images on small screens === */
+@media (max-width: 880px) {
+  .dashboard-sidebar,
+  .login-images-left {
+    display: none !important;
+    position: static !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* === Navbar === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgb(212, 191, 157);
+  height: var(--navbar-height);
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Logo */
+.navbar .navbar-logo,
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.95rem;
+  letter-spacing: 2px;
+  margin-left: 2.2rem;
+  margin-right: 2.7rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  line-height: var(--navbar-height);
+  transition: opacity 0.2s;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: rgb(49, 29, 10);
+  color: rgb(202, 169, 141);
+}
+
+/* Links */
+.navbar a {
+  color: #64372c;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-family: baskerville, serif;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  background: rgb(92, 58, 48);
+  color: #fff;
+}
+
+/* Nav links container */
+.nav-links {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.nav-links.open {
+  max-height: 500px;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Explore dropdown */
+.explore {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.explore-toggle {
+  background: rgb(212, 191, 157);
+  border: none;
+  color: #63372c;
+  font-weight: 700;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.explore-toggle:focus {
+  outline: 2px solid rgba(99,55,44,0.2);
+  outline-offset: 2px;
+}
+
+.explore.open .nav-links {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.explore .nav-links a {
+  padding: 10px;
+  color: #333;
+  background: transparent;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.explore .nav-links a:hover,
+.explore .nav-links a:focus {
+  background: #64372c;
+  color: #ffffff;
+}
+
+/* CTA inside dropdown */
+.explore .nav-links .subscribe-button {
+  display: block;
+  padding: 10px;
+  color: #64372c;
+  border-radius: 6px;
+}
+
+/* Explore nav links layout (inline mode) */
+#explore #nav-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+}
+
+#explore #nav-links li { list-style: none; }
+
+#explore #nav-links a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+}
+
+/* === Explore Dropdown (Desktop) === */
+@media (min-width: 881px) {
+  .explore .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);   /* sits just below the Explore button */
+    right: 0;
+    width: 220px;
+    background: rgb(212, 191, 157);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 8px;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1200;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    max-height: none;
+    overflow-y: auto;
+  }
+
+  .explore.open .nav-links,
+  .explore:hover .nav-links,
+  .explore:focus-within .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* === Explore Dropdown (Mobile) === */
+@media (max-width: 880px) {
+  .explore { display: none; } /* hide Explore on mobile to avoid duplicate controls */
+}
+
+/* Right-side actions (CTA + login) */
+.nav-actions {
+  margin-left: auto;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-actions .subscribe-button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

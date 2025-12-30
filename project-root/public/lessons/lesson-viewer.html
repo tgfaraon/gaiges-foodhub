@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson Viewer</title>
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <link rel="stylesheet" href="/styles/lesson.css" />
+  <link rel="stylesheet" href="/styles/animations.css" />
+  <link rel="stylesheet" href="/styles/modals.css" />
+
+  <!-- React + ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="/members.html">← Back to Dashboard</a>
+  </nav>
+
+  <!-- React mount point -->
+  <div id="lesson-root"></div>
+
+  <!-- React entry logic -->
+  <script type="text/javascript">
+    function LessonViewer() {
+      const [lesson, setLesson] = React.useState(null);
+      const [answers, setAnswers] = React.useState({});
+      const [feedback, setFeedback] = React.useState({});
+      const lessonId = new URLSearchParams(window.location.search).get("id");
+
+      React.useEffect(() => {
+        fetch(`/api/lessons/${lessonId}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        })
+          .then(res => res.json())
+          .then(data => setLesson(data));
+      }, [lessonId]);
+
+      if (!lesson) return React.createElement("p", null, "Loading...");
+
+      function handleAnswerChange(idx, value) {
+        setAnswers({ ...answers, [idx]: value });
+      }
+
+      function gradeAnswer(q, idx) {
+        fetch('/api/lessons/grade', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify({
+            question: q.question,
+            userAnswer: answers[idx],
+            correctAnswer: q.correctAnswer,
+            acceptedKeywords: q.acceptedKeywords
+          })
+        })
+          .then(res => res.json())
+          .then(result => {
+            setFeedback(prev => ({ ...prev, [idx]: result.feedback }));
+          })
+          .catch(err => {
+            console.error('Error grading answer:', err);
+            setFeedback(prev => ({ ...prev, [idx]: 'Error grading answer.' }));
+          });
+      }
+
+      return React.createElement(
+        "div",
+        { className: "lesson-viewer" },
+        // Title
+        React.createElement("h1", null, lesson.title),
+
+        // Metadata chips
+        React.createElement(
+          "div",
+          { className: "lesson-meta" },
+          React.createElement("span", null, `Difficulty: ${lesson.difficulty || "—"}`),
+          React.createElement("span", null, `Tags: ${Array.isArray(lesson.tags) ? lesson.tags.join(", ") : (lesson.tags || "—")}`),
+          React.createElement("span", null, `Time: ${lesson.estimatedTime || lesson.time || "—"} minutes`)
+        ),
+
+        // Content
+        React.createElement("div", { className: "lesson-content" }, lesson.content),
+
+        // Video
+        lesson.youtubeId
+          ? React.createElement(
+              "div",
+              { className: "lesson-video" },
+              React.createElement("iframe", {
+                src: `https://www.youtube.com/embed/${lesson.youtubeId}`,
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                allowFullScreen: true
+              })
+            )
+          : React.createElement("p", null, "Video locked until you progress further."),
+
+        // Quiz section
+        lesson.quiz && Array.isArray(lesson.quiz) && lesson.quiz.length > 0
+          ? React.createElement(
+              "div",
+              { className: "lesson-quiz" },
+              React.createElement("h2", null, "Quiz"),
+              lesson.quiz.map((q, idx) =>
+                React.createElement(
+                  "div",
+                  { key: idx, className: "quiz-question" },
+                  React.createElement("p", null, q.question || "Untitled question"),
+                  React.createElement("input", {
+                    type: "text",
+                    placeholder: "Type your answer here...",
+                    value: answers[idx] || "",
+                    onChange: e => handleAnswerChange(idx, e.target.value)
+                  }),
+                  React.createElement(
+                    "button",
+                    { onClick: () => gradeAnswer(q, idx) },
+                    "Submit"
+                  ),
+                  feedback[idx] &&
+                    React.createElement("p", { className: "quiz-feedback" }, feedback[idx])
+                )
+              )
+            )
+          : null
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("lesson-root"));
+    root.render(React.createElement(LessonViewer));
+  </script>
+  <script type="module" src="/src/LessonViewer.js"></script>
+</body>
+</html>

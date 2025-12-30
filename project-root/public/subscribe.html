@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Subscribe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/form.css" />
+  <link rel="stylesheet" href="/styles/animations.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="logo" href="/">Gaige's Food Hub</a>
+    <button class="hamburger" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+
+    <div class="explore" id="explore">
+      <button class="explore-toggle" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+      <ul id="nav-links" class="nav-links" role="menubar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/subscribe.html">Get Started</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-actions" id="nav-actions">
+      <a id="navbar-subscribe" class="subscribe-button" href="/subscribe" aria-label="Subscribe">Cook Now!</a>
+
+      <div class="login" id="nav-login">
+        <a href="/login.html" class="login-button" aria-label="Login">Log in</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Subscribe Section -->
+  <main class="subscribe-page">
+    <section class="subscribe-hero">
+      <h2 class="subscribe-header">Start Cooking with the Hub!</h2>
+      <p>Get exclusive recipes, tips, and members-only content delivered to your inbox.</p>
+    </section>
+
+  <div id="error-message" style="color: red; margin-bottom: 12px;"></div>
+  <form id="subscribe-form" autocomplete="off">
+
+  <input type="text" id="first-name" class="form-input" placeholder="First Name" autocomplete="off" readonly required />
+  <input type="text" id="last-name" class="form-input" placeholder="Last Name" autocomplete="off" readonly required />
+  <input type="text" id="username" class="form-input" placeholder="Username" autocomplete="off" readonly required />
+  <input type="email" id="email" class="form-input" placeholder="Email" autocomplete="off" readonly required />
+
+  <div class="password-wrapper">
+    <input type="password" id="password" class="form-input password-field" placeholder="Password" autocomplete="new-password" readonly required />
+    <button type="button" id="toggle-password" class="toggle-icon" aria-label="Toggle password visibility">👁️</button>
+  </div>
+
+  <div class="password-wrapper">
+    <input type="password" id="confirm-password" class="form-input password-field" placeholder="Re-enter Password" autocomplete="new-password" readonly required />
+    <button type="button" id="toggle-confirm" class="toggle-icon" aria-label="Toggle confirm password visibility">👁️</button>
+  </div>
+
+  <button id="submit-btn" type="submit">Submit</button>
+  <p id="feedback" class="subscribe-feedback"></p>
+  <p id="error-message" class="subscribe-feedback error"></p>
+</form>
+  <div id="loading-spinner" style="display: none;">Submitting...</div>
+  </main>
+
+  <!-- Scripts -->
+  <script>
+  document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const feedback = document.getElementById('subscribe-feedback');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, username, password, confirmPassword }) 
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = '/members.html';
+        feedback.textContent = '✅ Registration successful!';
+        feedback.className = 'subscribe-feedback success';
+      } else {
+        feedback.textContent = data.message || 'Registration failed.';
+        feedback.className = 'subscribe-feedback error';
+      }
+    } catch (err) {
+      feedback.textContent = 'Server error.';
+      feedback.className = 'subscribe-feedback error';
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const togglePassword = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+
+    const toggleConfirm = document.getElementById('toggle-confirm');
+    const confirmInput = document.getElementById('confirm-password');
+
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        togglePassword.textContent = type === 'text' ? '🙈' : '👁️';
+      });
+    }
+
+    if (toggleConfirm && confirmInput) {
+      toggleConfirm.addEventListener('click', () => {
+        const type = confirmInput.type === 'password' ? 'text' : 'password';
+        confirmInput.type = type;
+        toggleConfirm.textContent = type === 'text' ? '🙈' : '👁️';
+      });
+    }
+  });
+</script>
+  <script src="subscribe.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+#subscribe-form h2,
+.subscribe-inner h2 {
+  color: #63372c;
+  margin-top: 0;
+}
+
+.subscribe-page {
+  background: rgb(212, 191, 157);
+  color: #63372c;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(99, 55, 44, 0.06);
+  padding: 1.75rem;
+  max-width: 800px;
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+}
+
+/* === Form Layout === */
+#spa-subscribe-form,
+#subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  background: rgb(212, 191, 157);
+  color: #63372c;
+  padding: 1.25rem;
+  border-radius: 12px;
+  font-family: 'serif', 'Baskerville', 'Times New Roman', Georgia, serif;
+  box-shadow: 0 6px 18px rgba(99, 55, 44, 0.04);
+  max-width: 920px;
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+}
+
+#subscribe-form p,
+.subscribe-inner p {
+  color: #63372c;
+  margin-bottom: 0.75rem;
+}
+
+.form-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  margin: 0.5rem auto;
+  display: block;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* === Inputs === */
+#spa-subscribe-form input[type="text"],
+#spa-subscribe-form input[type="email"],
+#subscribe-form input[type="text"],
+#subscribe-form input[type="email"] {
+  width: 100%;
+  padding: 0.85rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* === Primary CTA Button === */
+#spa-subscribe-form button[type="submit"],
+#subscribe-form .subscribe-button,
+#subscribe-form button[type="submit"] {
+  background: #63372c;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+#spa-subscribe-form button[type="submit"]:hover,
+#subscribe-form .subscribe-button:hover,
+#subscribe-form button[type="submit"]:hover {
+  background: rgb(49, 29, 10);
+  box-shadow: 0 8px 20px rgba(99, 55, 44, 0.12);
+  transform: translateY(-2px);
+}
+
+/* === Secondary / Cancel Button === */
+#spa-subscribe-form button[type="button"],
+#subscribe-form .cancel {
+  background: transparent;
+  border: 1px solid rgb(194, 146, 107);
+  color: #63372c;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* === Feedback Messages === */
+#spa-feedback,
+.subscribe-feedback,
+#subscribe-feedback {
+  margin-top: 0.5rem;
+  min-height: 1.2rem;
+  font-weight: 600;
+}
+
+#spa-feedback.error,
+.subscribe-feedback.error,
+#subscribe-feedback.error {
+  color: #b22222;
+}
+
+#spa-feedback.success {
+  color: #0a7a0a;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgb(212, 191, 157);
+  color: #63372c;
+  padding: 1.25rem;
+  border-radius: 12px;
+  font-family: 'serif', 'Baskerville', 'Times New Roman', Georgia, serif;
+  box-shadow: 0 6px 18px rgba(99, 55, 44, 0.04);
+  max-width: 920px;
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+}
+
+  .subscribe-button {
+  display: block;
+  margin: 0.5rem auto;
+  width: 100%;
+  max-width: 400px;
+  background: #63372c;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  text-align: center;
+}
+
+  .success-message {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0a7a0a;
+  margin-top: 1rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  #feedback {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
+  transition: opacity 0.5s ease;
+}
+
+#feedback.success {
+  color: #0a7a0a;
+  background: rgba(10, 122, 10, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.password-wrapper input.form-input {
+  width: 100%;
+  padding-right: 2.5rem; /* reserve space for icon */
+  box-sizing: border-box;
+}
+
+.password-wrapper button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #63372c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #63372c;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem auto;
+  font-weight: 600;
+  color: #63372c;
+}
+
+.forgot-link {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #63372c;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.login-images-left {
+  position: absolute;
+  top: 70px; /* adjust based on your header height */
+  left: 0;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-left: 2rem;
+  z-index: 0;
+}
+
+.login-images-left img {
+  width: 100%;
+  height: clamp(180px, 30vw, 420px);
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 1rem 1rem 0 4px #63372c;
+}
+
+/* Login layout stays to the right */
+.login-layout {
+  margin-left: 10px; /* push form to the right of image column */
+  padding: 2.5rem;
+  background-color: rgb(212, 191, 157);
+  display: flex;
+  justify-content: center;
+}
+
+.login-right {
+  max-width: 700px;               /* ✅ Match subscribe form width */
+  width: 100%;
+  padding: 4rem;                  /* ✅ Match subscribe form padding */
+  background-color: rgb(212, 191, 157); /* ✅ Your custom colorway */
+  border-radius: 10px;            /* ✅ Rounded corners */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.lesson-actions .subscribe-button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+}
+
+.lesson-progress-container {
+    background-color: #f3e9d7;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #c4a484;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border: 1px solid #bfae9f;
+    border-radius: 6px;
+    background-color: #fffdf7;
+    font-size: 1rem;
+}
+
+form button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #63372c;
+    color: #fff8e1;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form button:hover {
+    background-color: #4e2a22;
+}
+
+.lesson-body {
+    margin-top: 1.5rem;
+    line-height: 1.6;
+    background-color: #fffdf7;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e0d6c9;
+}
+
+.primary-button {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaige's Food Hub Admin Panel</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <link rel="stylesheet" href="/styles/admin.css" />
+  <link rel="stylesheet" href="/styles/animations.css" />
+  <link rel="stylesheet" href="/styles/modals.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1 class="outlined-header">Gaige's Food Hub Admin Panel</h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="logo" href="/">Gaige's Food Hub</a>
+    <div class="nav-actions">
+      <div class="explore" id="explore">
+        <button class="explore-toggle" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+        <ul id="nav-links" class="nav-links" role="menubar">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/login.html">Log Out</a></li>
+        </ul>
+      </div>
+
+      <div class="member-dropdown">
+        <button class="dropdown-toggle avatar-button" data-target="member-menu">
+          <img id="member-avatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User" />
+          <span id="avatar-caret">▾</span>
+        </button>
+        <div id="member-menu" class="dropdown-content hidden">
+          <div id="member-greeting" style="padding: 10px 16px; font-weight: bold; color:#573026">Hi, Member!</div>
+          <a href="/admin.html" id="admin-link" class="dropdown-item hidden">Admin Dashboard</a>
+          <a href="/members.html">Members Dashboard</a>
+          <a href="/members.html#lesson-section">Lessons</a>
+          <a href="/members.html#saved-section">Saved Recipes & Lessons</a>
+          <a href="/members.html#preferences-dropdown">Preferences</a>
+          <a href="/members.html#account-dropdown">Account Settings</a>
+          <a href="/" id="logout-link">Log Out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar">
+    <img src="/assets/grilled-chicken.jpg" alt="Admin Sidebar Image" class="sidebar-image" />
+  </aside>
+
+  <!-- Dashboard Sections -->
+  <section class="dashboard-section">
+
+    <!-- Lesson Editor -->
+    <div class="dropdown-section">
+      <button class="dropdown-toggle" data-target="lesson-editor-panel">
+        ✏️ Lesson Editor <span id="caret-editor">▾</span>
+      </button>
+      <div id="lesson-editor-panel" class="dropdown-content hidden">
+        <!-- React mount point -->
+        <div id="lesson-editor-root"></div>
+
+        <!-- Analytics -->
+        <div id="analytics">
+          <div id="analytics-label">Loading...</div>
+          <div class="bar"><div id="analytics-bar"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lesson Preview -->
+    <div class="dropdown-section">
+      <button class="dropdown-toggle" data-target="lesson-preview-panel">
+        📘 Lesson Preview <span id="caret-preview">▾</span>
+      </button>
+      <div id="lesson-preview-panel" class="dropdown-content hidden">
+        <div id="lesson-preview"></div>
+        <div class="lesson-preview-wrapper">
+          <table class="lesson-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Difficulty</th>
+                <th>Tags</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Analytics -->
+    <div class="dropdown-section">
+      <button class="dropdown-toggle" data-target="user-analytics-panel">
+        📊 User Analytics <span id="caret-analytics">▾</span>
+      </button>
+      <div id="user-analytics-panel" class="dropdown-content hidden">
+        <div class="lesson-progress-container">
+          <h3 class="progress-title">Lesson 1 Completion</h3>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="analytics-bar"></div>
+            </div>
+            <div class="progress-label" id="analytics-label">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Promote to Admin -->
+    <div class="dropdown-section" id="promote-admin-section">
+      <button class="dropdown-toggle" data-target="promote-admin-panel">
+        🛡️ Promote to Admin <span id="caret-promote">▾</span>
+      </button>
+      <div id="promote-admin-panel" class="dropdown-content hidden">
+        <label for="user-dropdown">Select user:</label>
+        <select id="user-dropdown"></select>
+        <button id="promote-button">Promote to Admin</button>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="dropdown-section">
+      <button class="dropdown-toggle" data-target="user-management-panel">
+        👥 User Management <span id="caret-users">▾</span>
+      </button>
+      <div id="user-management-panel" class="dropdown-content hidden">
+        <div class="user-table-wrapper">
+          <table id="user-table" class="user-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="4">Loading users...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Site Settings -->
+    <div class="dropdown-section">
+      <button class="dropdown-toggle" data-target="site-settings-panel">
+        ⚙️ Site Settings <span id="caret-settings">▾</span>
+      </button>
+      <div id="site-settings-panel" class="dropdown-content hidden">
+        <form id="settings-form">
+          <label>
+            <input type="checkbox" id="toggle-announcements" />
+            Enable Announcements Banner
+          </label>
+
+          <label>
+            <input type="checkbox" id="toggle-maintenance" />
+            Enable Maintenance Mode
+          </label>
+
+          <label for="announcement-text">Announcement Message</label>
+          <textarea id="announcement-text" rows="4" placeholder="Enter site-wide announcement..."></textarea>
+
+          <button type="submit">Save Settings</button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Scripts -->
+  <script src="/admin/admin.js"></script>
+
+  <!-- React + ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- React entry script -->
+  <script src="/admin/main.js"></script>
+  <script type="module" src="/src/LessonEditor.js"></script>
+</body>
+</html>
