@@ -11,7 +11,7 @@
   background-color: rgb(212, 191, 157);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-header {
@@ -32,12 +32,14 @@
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
-.saved-card:hover { transform: scale(1.02); }
+.saved-card:hover {
+  transform: scale(1.02);
+}
 
 .saved-card img {
   width: 100%;
@@ -58,7 +60,7 @@
   padding: 1.5rem;
   border-radius: 12px;
   border: 2px solid #c4a484;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 1.5rem;
 }
 
@@ -111,7 +113,7 @@
   overflow-x: auto;
   margin-top: 1rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .dashboard-table {
@@ -135,7 +137,9 @@
   font-weight: bold;
 }
 
-.dashboard-table tr:hover { background-color: #f9f2e8; }
+.dashboard-table tr:hover {
+  background-color: #f9f2e8;
+}
 
 .dashboard-table .action-button {
   background-color: #63372c;
@@ -147,4 +151,15 @@
   font-size: 0.85rem;
 }
 
-.dashboard-table .action-button:hover { background-color: #4e2a22; }
+.dashboard-table .action-button:hover {
+  background-color: #4e2a22;
+}
+
+#badge-modal .modal-content {
+  max-height: 70vh;
+  /* keeps modal from taking the whole screen */
+  overflow-y: auto;
+  /* enables scrolling inside the modal */
+  padding-right: 1rem;
+  /* prevents text from touching the scrollbar */
+}

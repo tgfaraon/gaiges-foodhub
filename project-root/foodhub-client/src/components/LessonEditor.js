@@ -1,6 +1,31 @@
 // LessonEditor.js
 import React, { useState, useEffect } from "react";
 
+function extractYouTubeId(url) {
+  if (!url) return "";
+  try {
+    // Handle youtu.be links 
+    if (url.includes("youtu.be/")) {
+      return url.split("youtu.be/")[1].substring(0, 11);
+    }
+
+    // Handle watch?v= links 
+    const urlObj = new URL(url);
+    const v = urlObj.searchParams.get("v");
+    if (v) return v.substring(0, 11);
+
+    // Handle embed links 
+    if (url.includes("/embed/")) {
+      return url.split("/embed/")[1].substring(0, 11);
+    }
+  } catch (err) {
+    // If user already entered a raw ID 
+    if (url.length === 11) return url; return "";
+  }
+
+  return "";
+}
+
 export default function LessonEditor() {
   const [editingId, setEditingId] = useState(null);
 
@@ -56,11 +81,11 @@ export default function LessonEditor() {
         Array.isArray(l.sections) && l.sections.length
           ? l.sections
           : [
-              {
-                sectionTitle: "Main",
-                sectionContent: l.content || "",
-              },
-            ]
+            {
+              sectionTitle: "Main",
+              sectionContent: l.content || "",
+            },
+          ]
       );
     }
 
@@ -129,7 +154,7 @@ export default function LessonEditor() {
           .map((t) => t.trim())
           .filter(Boolean),
         time,
-        youtubeId,
+        youtubeId: extractYouTubeId(youtubeId),
         introduction,
         whatYouWillLearn: whatYouWillLearn
           .map((item) => item.trim())
@@ -223,7 +248,7 @@ export default function LessonEditor() {
 
       <input
         type="text"
-        placeholder="YouTube video ID"
+        placeholder="YouTube URL or ID"
         value={youtubeId}
         onChange={(e) => setYoutubeId(e.target.value)}
       />

@@ -5,8 +5,10 @@ import DashboardCard from "./DashboardCard";
 import BadgeStreakDisplay from "./BadgeStreakDisplay";
 import Alert from "./Alert";
 import "../styles/dashboard.css";
+import CertificateLink from "../components/CertificateLink";
+import { jwtDecode } from "jwt-decode";
 
-export default function LessonList({ account, setAccount }) {
+export default function LessonList({ user, account, setAccount }) {
   const [lessons, setLessons] = useState([]);
   const [progress, setProgress] = useState(null);
   const [error, setError] = useState(null);
@@ -36,6 +38,8 @@ export default function LessonList({ account, setAccount }) {
     : 1;
 
   const nextLesson = lessons.find((l) => l.order === nextLessonOrder);
+  const decoded = jwtDecode(effectiveToken);
+  const userId = decoded.userId || decoded.user_id || decoded.id;
 
   const savePreferences = async () => {
     setSavingPrefs(true);
@@ -177,7 +181,7 @@ export default function LessonList({ account, setAccount }) {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {progress && (
-        
+
         <DashboardCard title="Your Progress" collapsible>
           <p>
             Progress: {progress.completedLessons?.length || 0} / {TOTAL_LESSONS}
@@ -192,6 +196,11 @@ export default function LessonList({ account, setAccount }) {
           </div>
         </DashboardCard>
       )}
+
+      {/* 🎓 Certificate Viewer */}
+      <DashboardCard title="Your Certificate" collapsible>
+        <CertificateLink userId={userId} />
+      </DashboardCard>
 
       {progress && <BadgeStreakDisplay progress={progress} />}
 
@@ -305,52 +314,52 @@ export default function LessonList({ account, setAccount }) {
           {savedItems.length === 0 && !loadingSaved ? (
             <p>No saved lessons yet. Save one from the Lesson Viewer!</p>
           ) : (
-          <ul className="saved-list">
-  {savedItems.map((lessonId) => {
-    const lesson = lessons.find((l) => l._id === lessonId);
-    if (!lesson) return null; // ⬅️ nothing rendered if lesson not found
+            <ul className="saved-list">
+              {savedItems.map((lessonId) => {
+                const lesson = lessons.find((l) => l._id === lessonId);
+                if (!lesson) return null; // ⬅️ nothing rendered if lesson not found
 
-    const removeLesson = async () => {
-      const confirmRemove = window.confirm(
-        `Are you sure you want to remove Lesson ${lesson.order}: ${lesson.title} from your dashboard?`
-      );
-      if (!confirmRemove) return;
+                const removeLesson = async () => {
+                  const confirmRemove = window.confirm(
+                    `Are you sure you want to remove Lesson ${lesson.order}: ${lesson.title} from your dashboard?`
+                  );
+                  if (!confirmRemove) return;
 
-      try {
-        const res = await fetch(
-          `http://localhost:5000/api/users/saved/${lessonId}`,
-          {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${effectiveToken}` },
-          }
-        );
-        if (!res.ok) throw new Error("Failed to remove lesson");
-        const data = await res.json();
-        setSavedItems(data.items || []);
-      } catch (err) {
-        console.error("Error removing saved lesson:", err);
-        setSavedError("Failed to remove lesson.");
-      }
-    };
+                  try {
+                    const res = await fetch(
+                      `http://localhost:5000/api/users/saved/${lessonId}`,
+                      {
+                        method: "DELETE",
+                        headers: { Authorization: `Bearer ${effectiveToken}` },
+                      }
+                    );
+                    if (!res.ok) throw new Error("Failed to remove lesson");
+                    const data = await res.json();
+                    setSavedItems(data.items || []);
+                  } catch (err) {
+                    console.error("Error removing saved lesson:", err);
+                    setSavedError("Failed to remove lesson.");
+                  }
+                };
 
-    return (
-      <li key={lessonId}>
-        <Link to={`/viewer?order=${lesson.order}`}>
-          Lesson {lesson.order}: {lesson.title}
-        </Link>
-        <button onClick={removeLesson} style={{
-            marginLeft: "1rem",
-            background: "#63372c",
-            color: "white",
-            border: "none",
-            padding: "0.25rem 0.5rem",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}>Remove</button>
-      </li>
-    );
-  })}
-</ul>
+                return (
+                  <li key={lessonId}>
+                    <Link to={`/viewer?order=${lesson.order}`}>
+                      Lesson {lesson.order}: {lesson.title}
+                    </Link>
+                    <button onClick={removeLesson} style={{
+                      marginLeft: "1rem",
+                      background: "#63372c",
+                      color: "white",
+                      border: "none",
+                      padding: "0.25rem 0.5rem",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}>Remove</button>
+                  </li>
+                );
+              })}
+            </ul>
           )}
         </div>
       </DashboardCard>

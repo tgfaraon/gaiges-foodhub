@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DashboardCard from "./DashboardCard";
 import React from "react";
+import "../styles/animations.css";
 
 // Map badge names (from backend) to icons
 const badgeIcons = {
@@ -13,10 +14,42 @@ const badgeIcons = {
   "Mise En Place Pro Badge": "🛠️",
   "Perfect Score Badge": "⭐",
   "Precision Badge": "🎯",
-  "Culinary Artisan": "🍽️", 
+  "Culinary Artisan": "🍽️",
   "Technique Specialist": "📜",
   "Plating Wiz": "🍝🧙🏼‍♂️",
   "Culinary Mastery": "💎🥇",
+};
+
+const badgeRarity = {
+  "Joined Gaige's Food Hub": "common",
+  "Completed First Lesson": "common",
+  "Consistency Badge": "common",
+  "Weekly Warrior Badge": "rare",
+  "Master Chef Streak Badge": "epic",
+  "Apprentice Badge": "common",
+  "Mise En Place Pro Badge": "rare",
+  "Perfect Score Badge": "epic",
+  "Precision Badge": "rare",
+  "Culinary Artisan": "rare",
+  "Technique Specialist": "epic",
+  "Plating Wiz": "epic",
+  "Culinary Mastery": "legendary",
+};
+
+const badgeDescriptions = {
+  "Joined Gaige's Food Hub": "You’ve stepped into the kitchen. Welcome to your culinary journey.",
+  "Completed First Lesson": "A strong start — you’ve taken your first real step toward kitchen confidence.",
+  "Consistency Badge": "Three days of steady practice. Skill grows where habits live.",
+  "Weekly Warrior Badge": "Seven days straight — real commitment to your craft.",
+  "Master Chef Streak Badge": "Thirty days of dedication. This is the discipline great cooks are built on.",
+  "Apprentice Badge": "Lessons 1–5 complete — you’ve mastered the fundamentals.",
+  "Mise En Place Pro Badge": "Ten lessons down — your workflow is sharper and more intentional.",
+  "Perfect Score Badge": "A flawless quiz performance — you nailed every detail.",
+  "Precision Badge": "Scored 90%+ on a quiz after five lessons — impressive accuracy.",
+  "Culinary Artisan": "Thirteen lessons complete — your technique is evolving into craftsmanship.",
+  "Technique Specialist": "Twenty lessons complete — you’re moving with precision and confidence.",
+  "Plating Wiz": "Twenty‑six lessons complete — your dishes look as good as they taste.",
+  "Culinary Mastery": "All thirty lessons complete — you’ve earned your place at the top.",
 };
 
 export default function BadgeStreakDisplay({ progress }) {
@@ -97,7 +130,11 @@ export default function BadgeStreakDisplay({ progress }) {
               {allBadges.map((badge, idx) => (
                 <li key={idx}>
                   <span className="icon">{badgeIcons[badge]}</span>{" "}
-                  <span className="label">{badge}</span>
+                  <span className="label">
+                    {badge}
+                    <span className={`rarity-dot rarity-${badgeRarity[badge]}`}></span>
+                  </span>
+                  <p className="description">{badgeDescriptions[badge]}</p>
                 </li>
               ))}
             </ul>

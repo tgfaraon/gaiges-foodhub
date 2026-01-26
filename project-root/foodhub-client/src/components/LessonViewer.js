@@ -57,7 +57,7 @@ export default function LessonViewer() {
           const data = await res.json();
           setError(
             data.message ||
-              "This lesson is locked until you complete the previous one."
+            "This lesson is locked until you complete the previous one."
           );
           return;
         }
@@ -128,8 +128,24 @@ export default function LessonViewer() {
   // Quiz file upload (only used when lesson.supportsQuizFileUpload === true)
   const handleQuizFileChange = (e) => setQuizFile(e.target.files[0] || null);
 
+  // Simple banner handler for reward recipes (replace with your UI component) 
+  const showRewardRecipeBanner = (recipeId) => {
+    alert(`🎉 You unlocked a Reward Recipe!\nRecipe ID: ${recipeId}`);
+  };
+
   const handleSubmitQuiz = async () => {
     if (!lesson?._id) return;
+
+    // 🚫 Prevent submitting blank quizzes 
+    const allAnswered = (lesson.quiz || []).every((q, idx) => {
+      const answer = answers[idx];
+      return answer && answer.trim() !== "";
+    });
+
+    if (!allAnswered) {
+      alert("Please answer all quiz questions before submitting.");
+      return;
+    }
 
     try {
       const formData = new FormData();
@@ -164,11 +180,20 @@ export default function LessonViewer() {
       setAllCorrect(Boolean(data.allCorrect));
       setError(null);
 
+      // 🔥 Badge unlock notifications
       if (data.newlyAwarded?.length) {
         data.newlyAwarded.forEach((badge) => {
           alert(`🎉 You earned the "${badge}" badge!`);
         });
       }
+
+      // 🔥 Reward recipe unlock notifications (NEW) 
+      if (data.newlyUnlockedRecipes?.length) {
+        data.newlyUnlockedRecipes.forEach((recipeId) => {
+          showRewardRecipeBanner(recipeId);
+        });
+      }
+
     } catch (err) {
       console.error("Submission failed:", err);
       setError(`Failed to submit lesson: ${err.message}`);
@@ -231,10 +256,10 @@ export default function LessonViewer() {
           alert(`🎉 You earned the "${badge}" badge!`);
         });
       }
-      if (data.newlyUnlockedRecipes?.length) { 
-        data.newlyUnlockedRecipes.forEach((lessonId) => { 
-          alert(`🍽️ New Reward Recipe Unlocked! Lesson ${lessonId} is now available.`); 
-        }); 
+      if (data.newlyUnlockedRecipes?.length) {
+        data.newlyUnlockedRecipes.forEach((lessonId) => {
+          alert(`🍽️ New Reward Recipe Unlocked! Lesson ${lessonId} is now available.`);
+        });
       }
     } catch (err) {
       console.error("Media submission failed:", err);
@@ -453,9 +478,8 @@ export default function LessonViewer() {
 
                   {quizSubmitted && (
                     <div
-                      className={`quiz-feedback ${
-                        isCorrect ? "correct" : "incorrect"
-                      }`}
+                      className={`quiz-feedback ${isCorrect ? "correct" : "incorrect"
+                        }`}
                     >
                       {isCorrect ? (
                         <>
@@ -511,7 +535,7 @@ export default function LessonViewer() {
               Submit Quiz
             </button>
 
-            {quizSubmitted && passed && nextLessonOrder && (
+            {quizSubmitted && passed && Number(nextLessonOrder) > 0 && (
               <button onClick={goToNextLesson}>Next Lesson ➡</button>
             )}
           </div>
@@ -577,14 +601,14 @@ export default function LessonViewer() {
       )}
 
       {/* Next Lesson button for reward lessons */}
-      {lesson.order >= 101 && ( 
-        <div className="lesson-actions"> 
-          <button 
-            className="subscribe-button" 
-            onClick={() => navigate(`/viewer?order=${nextLessonOrder}`)} 
-            > 
-            Continue to Lesson {nextLessonOrder} ➡ 
-          </button> 
+      {lesson.order >= 101 && (
+        <div className="lesson-actions">
+          <button
+            className="subscribe-button"
+            onClick={() => navigate(`/viewer?order=${nextLessonOrder}`)}
+          >
+            Continue to Lesson {nextLessonOrder} ➡
+          </button>
         </div>
       )}
 
