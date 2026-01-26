@@ -49,9 +49,8 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/lessons", mediaGradeRouter);
 
 // Static build
-app.use(express.static(path.join(__dirname, "foodhub-client", "build")));
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "foodhub-client", "build", "index.html"));
+app.get('/', (req, res) => {
+  res.send('Backend is live and reachable.');
 });
 
 // Error handler
