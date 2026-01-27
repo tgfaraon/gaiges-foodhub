@@ -26,10 +26,9 @@ export default function Login({ onLogin }) {
     e.preventDefault();
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL
-        ? `${process.env.REACT_APP_API_URL}/api/auth/login`
+      const apiUrl = process.env.REACT_APP_API_BASE_URL
+        ? `${process.env.REACT_APP_API_BASE_URL}/auth/login`
         : "http://localhost:5000/api/auth/login";
-
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,54 +77,54 @@ export default function Login({ onLogin }) {
       <h1>Member Login</h1>
 
       <form onSubmit={handleSubmit} className="auth-form">
-  <label>
-    Username
-    <input
-      type="text"
-      value={username}
-      onChange={(e) => setUsername(e.target.value)}
-      required
-    />
-  </label>
+        <label>
+          Username
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </label>
 
-  <label>
-    Password
-    <div className="password-wrapper">
-      <input
-        type={showPassword ? "text" : "password"}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button
-        type="button"
-        className="toggle-visibility"
-        onClick={() => setShowPassword(!showPassword)}
-        aria-label={showPassword ? "Hide password" : "Show password"}
-      >
-        {showPassword ? "🙈" : "👁️"}
-      </button>
-    </div>
-  </label>
+        <label>
+          Password
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-visibility"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+        </label>
 
-  {/* Remember Me aligned left with text */}
-  <div className="remember-me">
-    <input
-    type="checkbox"
-    id="rememberMe"
-    checked={rememberMe}
-    onChange={(e) => setRememberMe(e.target.checked)}
-  />
-    <label htmlFor="rememberMe">Remember Me</label>
-  </div>
+        {/* Remember Me aligned left with text */}
+        <div className="remember-me">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+          />
+          <label htmlFor="rememberMe">Remember Me</label>
+        </div>
 
-  <button type="submit" className="submit-button">Login</button>
-</form>
+        <button type="submit" className="submit-button">Login</button>
+      </form>
 
-{/* Forgot Password link */}
-<p className="forgot-link">
-  <a href="/forgot-password">Forgot your password?</a>
-</p>
+      {/* Forgot Password link */}
+      <p className="forgot-link">
+        <a href="/forgot-password">Forgot your password?</a>
+      </p>
     </div>
   );
 }
