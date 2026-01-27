@@ -26,9 +26,10 @@ export default function Login({ onLogin }) {
     e.preventDefault();
 
     try {
-      const apiUrl = process.env.REACT_APP_API_BASE_URL
-        ? `${process.env.REACT_APP_API_BASE_URL}/auth/login`
+      const apiUrl = process.env.REACT_APP_API_URL
+        ? `${process.env.REACT_APP_API_URL}/api/auth/login`
         : "http://localhost:5000/api/auth/login";
+
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
