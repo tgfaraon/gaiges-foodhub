@@ -1,6 +1,5 @@
 {
   "name": "foodhub-client",
-  "homepage": "https://tgfaraon.github.io/gaiges-foodhub",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
