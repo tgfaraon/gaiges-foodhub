@@ -21,7 +21,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "cp public/_redirects build/_redirects",
+    "postbuild": "cp -f public/_redirects build/_redirects || echo 'Redirects copy skipped'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "proxy": "http://localhost:5000"
