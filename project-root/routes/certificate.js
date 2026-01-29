@@ -48,7 +48,7 @@ router.post("/issue", protect, async (req, res) => {
 });
 
 // GET /api/certificates/:userId 
-router.get("/:userId", async (req, res) => {
+router.get("/:userId", protect, async (req, res) => {
     try {
         const { userId } = req.params;
 
@@ -72,7 +72,7 @@ router.get("/:userId", async (req, res) => {
 });
 
 // GET /api/certificates/:userId/pdf 
-router.get("/:userId/pdf", async (req, res) => {
+router.get("/:userId/pdf", protect, async (req, res) => {
     try {
         const token =
             req.query.token ||
