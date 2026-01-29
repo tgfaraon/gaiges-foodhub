@@ -54,6 +54,7 @@ export default async function sendEmail(to, subject, message) {
     subject,
     text,
     html,
+    attachments: message.attachments || [],
   };
 
   try {
@@ -62,6 +63,11 @@ export default async function sendEmail(to, subject, message) {
     return info;
   } catch (err) {
     console.error("❌ Error sending email:", err);
+    console.error("Message:", err.message);
+    console.error("Code:", err.code);
+    console.error("Command:", err.command);
+    console.error("Response:", err.response);
+    console.error("Stack:", err.stack);
     throw err;
   }
 }
@@ -112,12 +118,12 @@ The Food Hub Team`;
 /**
  * Forgot password email template (HTML + text).
  */
-export function generatePasswordResetEmail(name, resetUrl) {
+export function generatePasswordResetEmail(firstName, resetUrl) {
   const subject = "Reset your Food Hub password";
   const html = `
     <div style="font-family: Arial, sans-serif; color:#333; line-height:1.6;">
       <h1 style="color:#e67e22; text-align:center; margin:0 0 16px;">Password reset request</h1>
-      <p>Hi ${name}, we received a request to reset your Food Hub password.</p>
+      <p>Hi ${firstName}, we received a request to reset your Food Hub password.</p>
       <p>Click the button below to choose a new password. If you didn't request this, you can safely ignore this email.</p>
       <div style="text-align:center; margin:24px 0;">
         <a href="${resetUrl}" style="background:#e67e22; color:#fff; padding:12px 20px; text-decoration:none; border-radius:6px; display:inline-block;">
@@ -129,9 +135,46 @@ export function generatePasswordResetEmail(name, resetUrl) {
   `;
   const text = `Password reset request
 
-Hi ${name}, we received a request to reset your Food Hub password.
+Hi ${firstName}, we received a request to reset your Food Hub password.
 Use this link to set a new password: ${resetUrl}
 If you didn't request this, ignore this email. The link may expire; request a new one if needed.`;
+
+  return { subject, html, text };
+}
+
+export function generateCertificateEmail(firstName) {
+  const subject = "🎓 Your Food Hub Culinary Mastery Certificate";
+
+  const html = ` 
+    <div style="font-family: Arial, sans-serif; color:#333; line-height:1.6;"> 
+      <h1 style="color:#27ae60; text-align:center; margin:0 0 16px;"> 
+        Congratulations, ${firstName}! 
+      </h1> 
+      
+      <p>You’ve officially completed the <strong>Food Hub Culinary Mastery Track</strong>.</p> 
+      
+      <p>Your dedication, consistency, and skill development have earned you your <strong>Culinary Mastery Certificate</strong>, which is attached to this email.</p> 
+      
+      <p style="margin-top:20px;">We’re proud of you — keep cooking with confidence.</p> 
+      
+      <p style="font-size:0.9em; color:#777; margin-top:30px;"> 
+        Gaige & The Food Hub Team 
+      </p> 
+    </div> 
+  `;
+
+  const text = ` 
+  
+  Congratulations, ${firstName}! 
+  
+  You've officially completed the Food Hub Culinary Mastery Track. 
+  
+  Your Culinary Mastery Certificate is attached to this email. 
+  
+  We're proud of you — keep cooking with confidence! 
+  
+  Gaige & The Food Hub Team 
+    `;
 
   return { subject, html, text };
 }
@@ -154,4 +197,19 @@ export async function sendWelcomeEmail(user, appUrl) {
 export async function sendPasswordResetEmail(user, resetUrl) {
   const { subject, html, text } = generatePasswordResetEmail(user?.name || "there", resetUrl);
   return sendEmail(user.email, subject, { html, text });
+}
+
+export async function sendCertificateEmail(user, pdfBuffer) {
+  const { subject, html, text } = generateCertificateEmail(user?.name || "there");
+
+  return sendEmail(user.email, subject, {
+    html,
+    text,
+    attachments: [
+      {
+        filename: "FoodHub-Certificate.pdf",
+        content: pdfBuffer,
+      },
+    ],
+  });
 }
