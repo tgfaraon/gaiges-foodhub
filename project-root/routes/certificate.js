@@ -4,6 +4,7 @@ import User from "../models/Users.js";
 import Certificate from "../models/Certificate.js";
 import { sendCertificateEmail } from "../utils/sendEmail.js";
 import generateCertificatePDF from "../utils/generateCertificatePDF.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -47,7 +48,7 @@ router.post("/issue", protect, async (req, res) => {
 });
 
 // GET /api/certificates/:userId 
-router.get("/:userId", protect, async (req, res) => {
+router.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
 
