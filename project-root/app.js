@@ -17,6 +17,7 @@ import adminRoutes from "./routes/adminRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import contactRoutes from "./routes/contact.js";
 import mediaGradeRouter from "./routes/mediaGrade.js";
+import certificateRoutes from "./routes/certificate.js";
 
 const app = express();
 
@@ -24,8 +25,18 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const allowedOrigins = [
+  "https://gaigesfoodhub.com",
+  "https://www.gaigesfoodhub.com"
+];
+
 // Core middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -47,6 +58,7 @@ app.use("/api/settings", settingsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/lessons", mediaGradeRouter);
+app.use("/api/certificates", certificateRoutes);
 
 // Static build
 app.get('/', (req, res) => {

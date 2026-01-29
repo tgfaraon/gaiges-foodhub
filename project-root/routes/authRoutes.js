@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       {
-        userId: user._id,
+        userId: user._id.toString(),
         role: user.role,
         username: user.username,
         email: user.email,
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
     res.status(200).json({
       token,
       user: {
-        userId: user._id,
+        userId: user._id.toString(),
         role: user.role,
         username: user.username,
         email: user.email,
@@ -102,7 +102,7 @@ router.post("/register", async (req, res) => {
 
     const token = jwt.sign(
       {
-        userId: newUser._id,
+        userId: newUser._id.toString(),
         role: newUser.role,
         username: newUser.username,
         email: newUser.email,
@@ -118,7 +118,7 @@ router.post("/register", async (req, res) => {
       message: "User registered successfully.",
       token,
       user: {
-        userId: newUser._id,
+        userId: newUser._id.toString(),
         role: newUser.role,
         username: newUser.username,
         email: newUser.email,
