@@ -2,9 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React from "react";
 
+import "../styles/mobileNavbar.css";
+
 export default function Navbar({ account }) {
   const [exploreOpen, setExploreOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const exploreRef = useRef(null);
   const memberRef = useRef(null);
@@ -39,20 +43,20 @@ export default function Navbar({ account }) {
 
   // Works in member dashboard as before; if not on it, route with a hash
   const scrollToSection = (id) => {
-  const onMemberDashboard = location.pathname === "/lessons"; // ✅ match App.js route
+    const onMemberDashboard = location.pathname === "/lessons"; // ✅ match App.js route
 
-  if (onMemberDashboard) {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    if (onMemberDashboard) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+      setMemberOpen(false);
+    } else {
+      // Navigate back to lessons route with hash
+      navigate(`/lessons#${id}`);
+      setMemberOpen(false);
     }
-    setMemberOpen(false);
-  } else {
-    // Navigate back to lessons route with hash
-    navigate(`/lessons#${id}`);
-    setMemberOpen(false);
-  }
-};
+  };
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
@@ -60,6 +64,25 @@ export default function Navbar({ account }) {
       <Link className="logo" to="/">Gaige's Food Hub</Link>
 
       <div className="nav-actions">
+
+        {/* MOBILE HAMBURGER (400px and below) */}
+        <button
+          className="hamburger mobile-only"
+          onClick={toggleMenu}
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        {menuOpen && (
+          <div className="mobile-menu mobile-only">
+            <Link to="/" onClick={toggleMenu}>Home</Link>
+            <Link to="/contact" onClick={toggleMenu}>Contact</Link>
+            <Link to="/register" onClick={toggleMenu}>Register</Link>
+            <Link to="/login" onClick={toggleMenu}>Login</Link>
+          </div>
+        )}
+
         {/* Explore dropdown */}
         <div className="explore" ref={exploreRef}>
           <button
