@@ -8,6 +8,8 @@ export default function SiteSettings({ token }) {
     announcementText: "",
   });
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   // Resolve effective token from prop or storage
   const effectiveToken =
     token || localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -17,7 +19,7 @@ export default function SiteSettings({ token }) {
       try {
         if (!effectiveToken) throw new Error("No token available");
 
-        const res = await fetch("http://localhost:5000/api/settings", {
+        const res = await fetch(`${apiUrl}/api/settings`, {
           headers: {
             Authorization: `Bearer ${effectiveToken}`,
           },
@@ -48,7 +50,7 @@ export default function SiteSettings({ token }) {
     try {
       if (!effectiveToken) throw new Error("No token available");
 
-      const res = await fetch("http://localhost:5000/api/settings", {
+      const res = await fetch(`${apiUrl}/api/settings`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -18,6 +18,8 @@ export default function UserAnalytics({ token }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const loadAnalytics = async () => {
       try {
@@ -26,7 +28,7 @@ export default function UserAnalytics({ token }) {
 
         if (!effectiveToken) throw new Error("No token available");
 
-        const res = await fetch("http://localhost:5000/api/admin/analytics", {
+        const res = await fetch(`${apiUrl}/api/admin/analytics`, {
           headers: { Authorization: `Bearer ${effectiveToken}` },
         });
 

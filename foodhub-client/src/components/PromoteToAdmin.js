@@ -7,6 +7,8 @@ export default function PromoteToAdmin({ token }) {
   const [loading, setLoading] = useState(true);
   const [promoting, setPromoting] = useState(false);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const loadUsers = async () => {
       try {
@@ -15,7 +17,7 @@ export default function PromoteToAdmin({ token }) {
 
         if (!effectiveToken) throw new Error("No token available");
 
-        const res = await fetch("http://localhost:5000/api/admin/users", {
+        const res = await fetch(`${apiUrl}/api/admin/users`, {
           headers: { Authorization: `Bearer ${effectiveToken}` },
         });
 
@@ -47,7 +49,7 @@ export default function PromoteToAdmin({ token }) {
       if (!effectiveToken) throw new Error("No token available");
 
       const res = await fetch(
-        `http://localhost:5000/api/admin/users/${selectedUser}/role`,
+        `${apiUrl}/api/admin/users/${selectedUser}/role`,
         {
           method: "PUT",
           headers: {

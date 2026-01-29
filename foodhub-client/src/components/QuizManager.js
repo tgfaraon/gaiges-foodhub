@@ -5,6 +5,8 @@ export default function QuizManager({ token }) {
   const [quiz, setQuiz] = useState([]);
   const [lessonId, setLessonId] = useState(null);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   // Listen for admin:edit-quiz event
   useEffect(() => {
     function handleEditQuiz(e) {
@@ -55,7 +57,7 @@ export default function QuizManager({ token }) {
       }
 
       const res = await fetch(
-        `http://localhost:5000/api/lessons/${lessonId}/quiz`,
+        `${apiUrl}/api/lessons/${lessonId}/quiz`,
         {
           method: "PUT",
           headers: {
