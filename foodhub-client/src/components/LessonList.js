@@ -6,7 +6,7 @@ import BadgeStreakDisplay from "./BadgeStreakDisplay";
 import Alert from "./Alert";
 import "../styles/dashboard.css";
 import CertificateLink from "../components/CertificateLink";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 export default function LessonList({ user, account, setAccount }) {
   const [lessons, setLessons] = useState([]);
