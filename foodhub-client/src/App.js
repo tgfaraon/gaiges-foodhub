@@ -45,6 +45,8 @@ function App() {
     }
 
     // ✅ Then fetch fresh account data from backend
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     const token =
       localStorage.getItem("token") || sessionStorage.getItem("token");
     if (!token) return;
