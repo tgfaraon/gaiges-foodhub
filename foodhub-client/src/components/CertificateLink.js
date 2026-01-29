@@ -9,7 +9,7 @@ export default function CertificateLink({ userId }) {
     const [resending, setResending] = useState(false);
     const [resendMessage, setResendMessage] = useState("");
 
-    const API_BASE = process.env.REACT_APP_API_BASE_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
@@ -17,7 +17,7 @@ export default function CertificateLink({ userId }) {
         async function fetchCertificate() {
             try {
                 const res = await axios.get(
-                    `${API_BASE}/api/certificates/${userId}`,
+                    `${apiUrl}/api/certificates/${userId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -29,7 +29,7 @@ export default function CertificateLink({ userId }) {
             }
         }
         fetchCertificate();
-    }, [userId, API_BASE]);
+    }, [userId, apiUrl]);
 
     if (!certificate) return null;
 
@@ -111,7 +111,7 @@ export default function CertificateLink({ userId }) {
 
                         {/* PDF Viewer */}
                         <embed
-                            src={`${API_BASE}/api/certificates/${userId}/pdf?token=${token}`}
+                            src={`${apiUrl}/api/certificates/${userId}/pdf?token=${token}`}
                             type="application/pdf"
                             style={{
                                 width: "100%",
@@ -130,7 +130,7 @@ export default function CertificateLink({ userId }) {
                             }}
                         >
                             <a
-                                href={`${API_BASE}/api/certificates/${userId}/pdf?token=${token}`}
+                                href={`${apiUrl}/api/certificates/${userId}/pdf?token=${token}`}
                                 download="FoodHub-Certificate.pdf"
                                 style={{
                                     backgroundColor: "rgb(193, 154, 107)",
@@ -148,7 +148,7 @@ export default function CertificateLink({ userId }) {
                                 setResending(true);
                                 setResendMessage("");
                                 try {
-                                    await axios.post(`${API_BASE}/api/certificates/resend`,
+                                    await axios.post(`${apiUrl}/api/certificates/resend`,
                                         { userId },
                                         {
                                             headers: { Authorization: `Bearer ${token}` }
