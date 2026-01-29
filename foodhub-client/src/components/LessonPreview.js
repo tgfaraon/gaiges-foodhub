@@ -6,6 +6,8 @@ export default function LessonPreview({ token }) {
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(null);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   // Resolve effective token from prop or storage
   const effectiveToken =
     token || localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -15,7 +17,7 @@ export default function LessonPreview({ token }) {
       try {
         if (!effectiveToken) throw new Error("No token available");
 
-        const res = await fetch("http://localhost:5000/api/lessons", {
+        const res = await fetch(`${apiUrl}/api/lessons`, {
           headers: {
             Authorization: `Bearer ${effectiveToken}`,
           },
@@ -60,7 +62,7 @@ export default function LessonPreview({ token }) {
       if (!effectiveToken) throw new Error("No token available");
 
       const res = await fetch(
-        `http://localhost:5000/api/lessons/${confirmDelete._id}`,
+        `${apiUrl}/api/lessons/${confirmDelete._id}`,
         {
           method: "DELETE",
           headers: {

@@ -41,6 +41,8 @@ export default function LessonEditor() {
   const [ingredients, setIngredients] = useState([""]);
   const [tools, setTools] = useState([""]);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [sections, setSections] = useState([
     { sectionTitle: "", sectionContent: "" },
   ]);
@@ -171,7 +173,7 @@ export default function LessonEditor() {
       };
 
       const url = editingId
-        ? `http://localhost:5000/api/lessons/${editingId}`
+        ? `${apiUrl}/api/lessons/${editingId}`
         : "http://localhost:5000/api/lessons";
       const method = editingId ? "PUT" : "POST";
 
