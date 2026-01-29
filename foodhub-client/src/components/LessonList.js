@@ -6,7 +6,7 @@ import BadgeStreakDisplay from "./BadgeStreakDisplay";
 import Alert from "./Alert";
 import "../styles/dashboard.css";
 import CertificateLink from "../components/CertificateLink";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 export default function LessonList({ user, account, setAccount }) {
   const [lessons, setLessons] = useState([]);
@@ -47,7 +47,7 @@ export default function LessonList({ user, account, setAccount }) {
     setSavingPrefs(true);
     setPrefsMessage("");
     try {
-      const res = await fetch("${apiUrl}/api/users/preferences", {
+      const res = await fetch(`${apiUrl}/api/users/preferences`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export default function LessonList({ user, account, setAccount }) {
     setSavingAccount(true);
     setAccountMessage("");
     try {
-      const res = await fetch("${apiUrl}/api/users/account", {
+      const res = await fetch(`${apiUrl}/api/users/account`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -133,20 +133,19 @@ export default function LessonList({ user, account, setAccount }) {
       };
 
       try {
-        const progressData = await fetchWithAuth("${apiUrl}/api/progress");
+        const progressData = await fetchWithAuth(`${apiUrl}/api/progress`);
         setProgress(progressData);
 
-        const lessonsData = await fetchWithAuth("${apiUrl}/api/lessons");
+        const lessonsData = await fetchWithAuth(`${apiUrl}/api/lessons`);
         setLessons(Array.isArray(lessonsData) ? lessonsData : []);
 
         setLoadingSaved(true);
-        const savedData = await fetchWithAuth("${apiUrl}/api/users/saved");
+        const savedData = await fetchWithAuth(`${apiUrl}/api/users/saved`);
         setSavedItems(savedData.items || []);
 
-        const accountData = await fetchWithAuth("${apiUrl}/api/users/account");
+        const accountData = await fetchWithAuth(`${apiUrl}/api/users/account`);
         setAccount(accountData);
-
-        const prefsData = await fetchWithAuth("${apiUrl}/api/users/preferences");
+        const prefsData = await fetchWithAuth(`${apiUrl}/api/users/preferences`);
         setPreferences(prefsData);
 
       } catch (err) {
