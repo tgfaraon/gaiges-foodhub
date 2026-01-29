@@ -5,6 +5,8 @@ export default function UserManagement({ token }) {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const loadUsers = async () => {
       try {
@@ -13,7 +15,7 @@ export default function UserManagement({ token }) {
 
         if (!effectiveToken) throw new Error("No token available");
 
-        const res = await fetch("http://localhost:5000/api/admin/users", {
+        const res = await fetch(`${apiUrl}/api/admin/users`, {
           headers: { Authorization: `Bearer ${effectiveToken}` },
         });
 
@@ -41,7 +43,7 @@ export default function UserManagement({ token }) {
 
       if (!effectiveToken) throw new Error("No token available");
 
-      const res = await fetch(`http://localhost:5000/api/admin/users/${userId}/role`, {
+      const res = await fetch(`${apiUrl}/api/admin/users/${userId}/role`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${effectiveToken}`,
@@ -71,7 +73,7 @@ export default function UserManagement({ token }) {
 
       if (!effectiveToken) throw new Error("No token available");
 
-      const res = await fetch(`http://localhost:5000/api/admin/users/${userId}/deactivate`, {
+      const res = await fetch(`${apiUrl}/api/admin/users/${userId}/deactivate`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${effectiveToken}` },
       });
@@ -97,7 +99,7 @@ export default function UserManagement({ token }) {
 
       if (!effectiveToken) throw new Error("No token available");
 
-      const res = await fetch(`http://localhost:5000/api/admin/users/${userId}/reactivate`, {
+      const res = await fetch(`${apiUrl}/api/admin/users/${userId}/reactivate`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${effectiveToken}` },
       });
