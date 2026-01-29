@@ -18,6 +18,8 @@ export default function LessonList({ user, account, setAccount }) {
     diets: [],
   });
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [savingPrefs, setSavingPrefs] = useState(false);
   const [prefsMessage, setPrefsMessage] = useState("");
   const [savingAccount, setSavingAccount] = useState(false);
@@ -45,7 +47,7 @@ export default function LessonList({ user, account, setAccount }) {
     setSavingPrefs(true);
     setPrefsMessage("");
     try {
-      const res = await fetch("http://localhost:5000/api/users/preferences", {
+      const res = await fetch("${apiUrl}/api/users/preferences", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +76,7 @@ export default function LessonList({ user, account, setAccount }) {
     setSavingAccount(true);
     setAccountMessage("");
     try {
-      const res = await fetch("http://localhost:5000/api/users/account", {
+      const res = await fetch("${apiUrl}/api/users/account", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -131,20 +133,20 @@ export default function LessonList({ user, account, setAccount }) {
       };
 
       try {
-        const progressData = await fetchWithAuth("http://localhost:5000/api/progress");
+        const progressData = await fetchWithAuth("${apiUrl}/api/progress");
         setProgress(progressData);
 
-        const lessonsData = await fetchWithAuth("http://localhost:5000/api/lessons");
+        const lessonsData = await fetchWithAuth("${apiUrl}/api/lessons");
         setLessons(Array.isArray(lessonsData) ? lessonsData : []);
 
         setLoadingSaved(true);
-        const savedData = await fetchWithAuth("http://localhost:5000/api/users/saved");
+        const savedData = await fetchWithAuth("${apiUrl}/api/users/saved");
         setSavedItems(savedData.items || []);
 
-        const accountData = await fetchWithAuth("http://localhost:5000/api/users/account");
+        const accountData = await fetchWithAuth("${apiUrl}/api/users/account");
         setAccount(accountData);
 
-        const prefsData = await fetchWithAuth("http://localhost:5000/api/users/preferences");
+        const prefsData = await fetchWithAuth("${apiUrl}/api/users/preferences");
         setPreferences(prefsData);
 
       } catch (err) {
@@ -233,8 +235,8 @@ export default function LessonList({ user, account, setAccount }) {
                 const isSaved = savedItems.includes(lessonId);
                 const method = isSaved ? "DELETE" : "POST";
                 const url = isSaved
-                  ? `http://localhost:5000/api/users/saved/${lessonId}`
-                  : `http://localhost:5000/api/users/saved`;
+                  ? `${apiUrl}/api/users/saved/${lessonId}`
+                  : `${apiUrl}/api/users/saved`;
 
                 const res = await fetch(url, {
                   method,
@@ -327,7 +329,7 @@ export default function LessonList({ user, account, setAccount }) {
 
                   try {
                     const res = await fetch(
-                      `http://localhost:5000/api/users/saved/${lessonId}`,
+                      `${apiUrl}/api/users/saved/${lessonId}`,
                       {
                         method: "DELETE",
                         headers: { Authorization: `Bearer ${effectiveToken}` },
