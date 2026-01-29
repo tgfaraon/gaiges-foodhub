@@ -31,6 +31,8 @@ export default function LessonViewer() {
   const params = new URLSearchParams(location.search);
   const order = params.get("order");
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
     if (!token) {
@@ -47,7 +49,7 @@ export default function LessonViewer() {
         }
 
         const res = await fetch(
-          `http://localhost:5000/api/lessons/order/${order}`,
+          `${apiUrl}/api/lessons/order/${order}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -100,7 +102,7 @@ export default function LessonViewer() {
   const handleSaveLesson = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/memberLessons/save/${lesson._id}`,
+        `${apiUrl}/api/memberLessons/save/${lesson._id}`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -155,7 +157,7 @@ export default function LessonViewer() {
       if (quizFile) formData.append("workFile", quizFile);
 
       const res = await fetch(
-        `http://localhost:5000/api/memberLessons/${lesson._id}/submit`,
+        `${apiUrl}/api/memberLessons/${lesson._id}/submit`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -235,7 +237,7 @@ export default function LessonViewer() {
       formData.append("media", mediaFile);
 
       const res = await fetch(
-        "http://localhost:5000/api/lessons/submit-media",
+        `${apiUrl}/api/lessons/submit-media`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },

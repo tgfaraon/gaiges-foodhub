@@ -18,11 +18,13 @@ export default function AdminDashboard({ token }) {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("analytics"); // tabs: analytics, management, promote
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   // Helper for authenticated fetch
   const fetchWithAuth = async (endpoint, options = {}) => {
     if (!effectiveToken) throw new Error("No token available");
 
-    const res = await fetch(`http://localhost:5000/api${endpoint}`, {
+    const res = await fetch(`${apiUrl}/api${endpoint}`, {
       ...options,
       headers: {
         "Content-Type": "application/json",
