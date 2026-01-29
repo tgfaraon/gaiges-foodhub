@@ -23,6 +23,27 @@
     display: none;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Logo default */
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #573026;
+    text-decoration: none;
+}
+
 /* MOBILE RULES */
 @media (max-width: 400px) {
     .desktop-only {

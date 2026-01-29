@@ -63,7 +63,7 @@ export default function Navbar({ account }) {
       {/* Logo */}
       <Link className="logo" to="/">Gaige's Food Hub</Link>
 
-      <div className="nav-actions">
+      <div className="navbar-left">
 
         {/* MOBILE HAMBURGER (400px and below) */}
         <button
