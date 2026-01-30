@@ -20,7 +20,7 @@
 
 /* Mobile-only elements */
 .mobile-only {
-    display: none;
+    display: block;
 }
 
 .navbar {
