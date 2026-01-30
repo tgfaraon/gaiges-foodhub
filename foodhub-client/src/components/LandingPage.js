@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/global.css";
 import "../styles/dashboard.css";
 import "../styles/animations.css";
 import "../styles/modals.css";
+import "../styles/mobileNavbar.css";
 
 function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <div className="landing-page">
       {/* Header */}
@@ -29,32 +33,44 @@ function LandingPage() {
 
       {/* Navigation */}
       <nav className="navbar" role="navigation" aria-label="Main navigation">
-        <Link className="logo" to="/">Gaige's Food Hub</Link>
-        <div className="explore" id="explore">
-          <button className="explore-toggle" aria-haspopup="true" aria-expanded="false">
-            Explore ▾
-          </button>
-          <ul id="nav-links" className="nav-links" role="menubar">
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/register">Get Started</Link></li>
-            <li><a href="#about">About</a></li>
-            <li><Link to="/contact">Contact</Link></li>
-          </ul>
+
+        {/* LEFT SIDE: Hamburger + Logo */}
+        <div className="navbar-left">
+          <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
+          <Link className="logo" to="/">Gaige's Food Hub</Link>
         </div>
 
-        <div className="nav-actions" id="nav-actions">
+        {/* MOBILE MENU */}
+        {menuOpen && (<div className="mobile-menu mobile-only">
+          <Link to="/" onClick={toggleMenu}>Home</Link>
+          <Link to="/register" onClick={toggleMenu}>Get Started</Link>
+          <a href="#about" onClick={toggleMenu}>About</a>
+          <Link to="/contact" onClick={toggleMenu}>Contact</Link>
+          <Link to="/login" onClick={toggleMenu}>Log In</Link>
+        </div>
+        )}
+
+        {/* DESKTOP NAVIGATION */}
+        <div className="nav-actions desktop-only">
+          <div className="explore">
+            <button className="explore-toggle">Explore ▾</button>
+            <ul className="nav-links">
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/register">Get Started</Link></li>
+              <li><a href="#about">About</a></li> <li><Link to="/contact">Contact</Link></li>
+            </ul>
+          </div>
+
           <Link
             id="navbar-subscribe"
             className="cta-button cta-cook"
             to="/register"
-            aria-label="Start cooking now"
           >
             🍳 Cook Now!
           </Link>
           <Link
             to="/login"
             className="cta-button cta-login"
-            aria-label="Log in to your account"
           >
             🔑 Log in
           </Link>
