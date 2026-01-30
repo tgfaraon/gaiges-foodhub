@@ -110,16 +110,14 @@ export default function CertificateLink({ userId }) {
                         </h2>
 
                         {/* PDF Viewer */}
-                        <embed
-                            src={`${apiUrl}/api/certificates/${userId}/pdf?token=${token}`}
-                            type="application/pdf"
+                        <iframe src={`${apiUrl}/api/certificates/${userId}/pdf`}
                             style={{
                                 width: "100%",
                                 height: "75%",
                                 borderRadius: "8px",
                                 border: "1px solid rgb(193, 154, 107)",
-                            }} />
-
+                            }}
+                        />
                         {/* Action buttons */}
                         <div
                             style={{
@@ -129,20 +127,36 @@ export default function CertificateLink({ userId }) {
                                 gap: "20px",
                             }}
                         >
-                            <a
-                                href={`${apiUrl}/api/certificates/${userId}/pdf?token=${token}`}
-                                download="FoodHub-Certificate.pdf"
+                            <button
+                                onClick={async () => {
+                                    try {
+                                        const res = await axios.get(
+                                            `${apiUrl}/api/certificates/${userId}/pdf`,
+                                            {
+                                                responseType: "blob",
+                                                headers: { Authorization: `Bearer ${token}` }
+                                            });
+
+                                        const url = window.URL.createObjectURL(new Blob([res.data]));
+                                        const link = document.createElement("a");
+                                        link.href = url; link.setAttribute("download", "FoodHub-Certificate.pdf");
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        link.remove();
+                                    } catch (err) {
+                                        console.error("Download error:", err);
+                                    }
+                                }}
                                 style={{
                                     backgroundColor: "rgb(193, 154, 107)",
                                     color: "white",
                                     padding: "10px 18px",
                                     borderRadius: "8px",
-                                    textDecoration: "none",
                                     fontWeight: "600",
                                 }}
                             >
                                 Download PDF
-                            </a>
+                            </button>
 
                             <button onClick={async () => {
                                 setResending(true);
