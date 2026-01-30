@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from "react";
 
@@ -22,6 +22,9 @@ import "./styles/animations.css";
 import "./styles/modals.css";
 
 function App() {
+  const location = useLocation();
+  const isLandingPage = location.pathname === "/";
+
   const [account, setAccount] = useState({
     name: "",
     email: "",
@@ -53,7 +56,7 @@ function App() {
 
     const fetchAccount = async () => {
       try {
-        const res = await fetch("${apiUrl}/api/users/account", {
+        const res = await fetch(`${apiUrl}/api/users/account`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch account");
@@ -111,7 +114,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-layout">
-        <Navbar account={account} />
+        {!isLandingPage && <Navbar account={account} />}
 
         <div className="app-content">
           <Routes>
@@ -152,4 +155,11 @@ function App() {
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>);
+}
+
+export default AppWrapper;
