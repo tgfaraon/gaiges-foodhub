@@ -110,6 +110,7 @@
         margin: 0 !important;
         height: auto;
         min-height: 44px;
+        box-sizing: border-box;
     }
 
     .navbar-left {
