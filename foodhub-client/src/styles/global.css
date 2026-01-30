@@ -342,8 +342,8 @@ body.landing-page-active {
   width: 100%;
   z-index: 1000;
   background: rgb(212, 191, 157);
-  height: var(--navbar-height);
-  padding: 0;
+  height: auto;
+  padding: 16px 32px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
@@ -532,4 +532,9 @@ body.landing-page-active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.page-content {
+  padding-top: 80px;
+  /* match navbar height */
 }
