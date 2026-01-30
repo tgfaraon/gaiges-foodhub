@@ -109,15 +109,16 @@ export default function CertificateLink({ userId }) {
                             Your Culinary Mastery Certificate
                         </h2>
 
-                        {/* PDF Viewer */}
-                        <iframe src={`${apiUrl}/api/certificates/${userId}/pdf`}
-                            style={{
-                                width: "100%",
-                                height: "75%",
-                                borderRadius: "8px",
-                                border: "1px solid rgb(193, 154, 107)",
-                            }}
-                        />
+                        {token && (
+                            <iframe src={`${apiUrl}/api/certificates/${userId}/pdf`}
+                                style={{
+                                    width: "100%",
+                                    height: "75%",
+                                    borderRadius: "8px",
+                                    border: "1px solid rgb(193, 154, 107)",
+                                }}
+                            />
+                        )}
                         {/* Action buttons */}
                         <div
                             style={{
