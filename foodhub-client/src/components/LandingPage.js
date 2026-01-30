@@ -30,7 +30,7 @@ function LandingPage() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <h1 style={{ color: "rgb(194, 146, 107)" }}>Welcome to Gaige's Food Hub</h1>
+          <h1 style={{ fontSize: "50px", color: "red" }}>TEST BUILD</h1>
           <p style={{ color: "white", marginTop: "0.5rem" }}>
             Your one-stop destination for delicious food from your own hands!
           </p>
