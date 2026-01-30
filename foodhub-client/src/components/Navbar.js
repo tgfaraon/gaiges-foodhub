@@ -59,10 +59,14 @@ export default function Navbar({ account }) {
   };
 
   return (
-    <div className="navbar-left">
-      <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
-      <Link className="logo" to="/">Gaige's Food Hub</Link>
+    <nav className="navbar" role="navigation" aria-label="Main navigation">
+      {/* LEFT SIDE: Hamburger + Logo */}
+      <div className="navbar-left">
+        <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
+        <Link className="logo" to="/">Gaige's Food Hub</Link>
+      </div>
 
+      {/* MOBILE MENU DROPDOWN */}
       {menuOpen && (
         <div className="mobile-menu mobile-only">
           <Link to="/" onClick={toggleMenu}>Home</Link>
@@ -72,82 +76,83 @@ export default function Navbar({ account }) {
         </div>
       )}
 
-      {/* Explore dropdown */}
-      <div className="explore" ref={exploreRef}>
-        <button
-          type="button"
-          className="explore-toggle"
-          aria-haspopup="true"
-          aria-expanded={exploreOpen}
-          onClick={() => setExploreOpen(!exploreOpen)}
-        >
-          Explore ▾
-        </button>
-        <ul
-          id="nav-links"
-          className={`nav-links ${exploreOpen ? "" : "hidden"}`}
-          role="menubar"
-        >
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/register">Register</Link></li>
-        </ul>
-      </div>
-
-      {/* Member dropdown */}
-      <div className="member-dropdown" ref={memberRef}>
-        <button
-          type="button"
-          className="dropdown-toggle avatar-button"
-          aria-haspopup="true"
-          aria-expanded={memberOpen}
-          onClick={() => setMemberOpen(!memberOpen)}
-        >
-          {avatar ? (
-            <img src={avatar} alt="User avatar" className="navbar-avatar" />
-          ) : (
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              alt="Default user"
-              className="navbar-avatar"
-            />
-          )}
-          <span id="avatar-caret">▾</span>
-        </button>
-        <div
-          id="member-menu"
-          className={`dropdown-content ${memberOpen ? "" : "hidden"}`}
-        >
-          <div
-            id="member-greeting"
-            style={{ padding: "10px 16px", fontWeight: "bold", color: "#573026" }}
+      {/* RIGHT SIDE: Explore + Member */}
+      <div className="nav-actions">
+        {/* Explore dropdown */}
+        <div className="explore desktop-only" ref={exploreRef}>
+          <button
+            type="button"
+            className="explore-toggle"
+            aria-haspopup="true"
+            aria-expanded={exploreOpen}
+            onClick={() => setExploreOpen(!exploreOpen)}
           >
-            Hi, {name}!
+            Explore ▾
+          </button>
+          <ul
+            id="nav-links" className={`nav-links ${exploreOpen ? "" : "hidden"}`}
+            role="menubar"
+          >
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/register">Register</Link></li>
+          </ul>
+        </div>
+
+        {/* Member dropdown */}
+        <div className="member-dropdown" ref={memberRef}>
+          <button
+            type="button"
+            className="dropdown-toggle avatar-button"
+            aria-haspopup="true"
+            aria-expanded={memberOpen}
+            onClick={() => setMemberOpen(!memberOpen)}
+          >
+            {avatar ? (
+              <img src={avatar} alt="User avatar" className="navbar-avatar" />
+            ) : (
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="Default user"
+                className="navbar-avatar"
+              />
+            )}
+            <span id="avatar-caret">▾</span>
+          </button>
+          <div
+            id="member-menu"
+            className={`dropdown-content ${memberOpen ? "" : "hidden"}`}
+          >
+            <div
+              id="member-greeting"
+              style={{ padding: "10px 16px", fontWeight: "bold", color: "#573026" }}
+            >
+              Hi, {name}!
+            </div>
+
+            {role === "admin" && (
+              <Link to="/admin" className="dropdown-item">Admin Dashboard</Link>
+            )}
+
+            <button type="button" className="dropdown-item" onClick={() => scrollToSection("lessons")}>
+              Lessons
+            </button>
+            <button type="button" className="dropdown-item" onClick={() => scrollToSection("member-saved")}>
+              Saved Recipes & Lessons
+            </button>
+            <button type="button" className="dropdown-item" onClick={() => scrollToSection("preferences")}>
+              Preferences
+            </button>
+            <button type="button" className="dropdown-item" onClick={() => scrollToSection("account-settings")}>
+              Account Settings
+            </button>
+            <button type="button" id="logout-link" className="dropdown-item" onClick={handleLogout}>
+              Log Out
+            </button>
           </div>
-
-          {role === "admin" && (
-            <Link to="/admin" className="dropdown-item">Admin Dashboard</Link>
-          )}
-
-          <button type="button" className="dropdown-item" onClick={() => scrollToSection("lessons")}>
-            Lessons
-          </button>
-          <button type="button" className="dropdown-item" onClick={() => scrollToSection("member-saved")}>
-            Saved Recipes & Lessons
-          </button>
-          <button type="button" className="dropdown-item" onClick={() => scrollToSection("preferences")}>
-            Preferences
-          </button>
-          <button type="button" className="dropdown-item" onClick={() => scrollToSection("account-settings")}>
-            Account Settings
-          </button>
-          <button type="button" id="logout-link" className="dropdown-item" onClick={handleLogout}>
-            Log Out
-          </button>
         </div>
       </div>
-    </div>
-    </nav >
+    </nav>
   );
-}
+} 
