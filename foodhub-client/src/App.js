@@ -155,11 +155,4 @@ function App() {
   );
 }
 
-function AppWrapper() {
-  return (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>);
-}
-
-export default AppWrapper;
+export default App;
