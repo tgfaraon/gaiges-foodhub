@@ -33,47 +33,41 @@ function LandingPage() {
 
       {/* Navigation */}
       <nav className="navbar" role="navigation" aria-label="Main navigation">
-
-        {/* LEFT SIDE: Hamburger + Logo */}
+        {/* LEFT SIDE: Logo only */}
         <div className="navbar-left">
-          <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
           <Link className="logo" to="/">Gaige's Food Hub</Link>
         </div>
+        {/* RIGHT SIDE: Hamburger + Desktop nav */}
+        <div className="nav-actions">
+          {/* MOBILE HAMBURGER */}
+          <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
 
-        {/* MOBILE MENU */}
-        {menuOpen && (<div className="mobile-menu mobile-only">
-          <Link to="/" onClick={toggleMenu}>Home</Link>
-          <Link to="/register" onClick={toggleMenu}>Get Started</Link>
-          <a href="#about" onClick={toggleMenu}>About</a>
-          <Link to="/contact" onClick={toggleMenu}>Contact</Link>
-          <Link to="/login" onClick={toggleMenu}>Log In</Link>
-        </div>
-        )}
+          {/* MOBILE MENU */}
+          {menuOpen && (
+            <div className="mobile-menu mobile-only">
+              <Link to="/" onClick={toggleMenu}>Home</Link>
+              <Link to="/register" onClick={toggleMenu}>Get Started</Link>
+              <a href="#about" onClick={toggleMenu}>About</a>
+              <Link to="/contact" onClick={toggleMenu}>Contact</Link>
+              <Link to="/login" onClick={toggleMenu}>Log In</Link>
+            </div>
+          )}
 
-        {/* DESKTOP NAVIGATION */}
-        <div className="nav-actions desktop-only">
-          <div className="explore">
-            <button className="explore-toggle">Explore ▾</button>
-            <ul className="nav-links">
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/register">Get Started</Link></li>
-              <li><a href="#about">About</a></li> <li><Link to="/contact">Contact</Link></li>
-            </ul>
+          {/* DESKTOP NAVIGATION */}
+          <div className="desktop-only">
+            <div className="explore">
+              <button className="explore-toggle">Explore ▾</button>
+              <ul className="nav-links">
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/register">Get Started</Link></li>
+                <li><a href="#about">About</a></li>
+                <li><Link to="/contact">Contact</Link></li>
+              </ul>
+            </div>
+
+            <Link id="navbar-subscribe" className="cta-button cta-cook" to="/register">🍳 Cook Now!</Link>
+            <Link className="cta-button cta-login" to="/login">🔑 Log in</Link>
           </div>
-
-          <Link
-            id="navbar-subscribe"
-            className="cta-button cta-cook"
-            to="/register"
-          >
-            🍳 Cook Now!
-          </Link>
-          <Link
-            to="/login"
-            className="cta-button cta-login"
-          >
-            🔑 Log in
-          </Link>
         </div>
       </nav>
 
