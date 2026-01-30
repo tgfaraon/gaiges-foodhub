@@ -74,23 +74,12 @@ router.get("/:userId", protect, async (req, res) => {
 // GET /api/certificates/:userId/pdf 
 router.get("/:userId/pdf", protect, async (req, res) => {
     try {
-        const token =
-            req.query.token ||
-            (req.headers.authorization && req.headers.authorization.split(" ")[1]);
+        const { userId } = req.params; // Ensure users can only access their own certificate 
 
-        if (!token) {
-            return res.status(401).json({ error: "Unauthorized: missing token" });
+        const requesterId = req.user.userId || req.user.id;
+        if (requesterId !== userId) {
+            return res.status(403).json({ error: "Forbidden" });
         }
-
-        // Verify token manually 
-        let decoded;
-        try {
-            decoded = jwt.verify(token, process.env.JWT_SECRET);
-        } catch (err) {
-            return res.status(401).json({ error: "Unauthorized: invalid token" });
-        }
-
-        const { userId } = req.params;
 
         const user = await User.findById(userId);
         const cert = await Certificate.findOne({ userId });
