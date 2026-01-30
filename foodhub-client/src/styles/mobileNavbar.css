@@ -10,7 +10,7 @@
 
 /* Mobile-only elements */
 .mobile-only {
-    display: block;
+    display: none;
 }
 
 .navbar {
