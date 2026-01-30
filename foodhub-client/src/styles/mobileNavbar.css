@@ -55,7 +55,7 @@
 }
 
 /* MOBILE RULES */
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .desktop-only {
         display: none;
     }
