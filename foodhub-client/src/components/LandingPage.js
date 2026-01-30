@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/global.css";
 import "../styles/dashboard.css";
@@ -9,6 +10,11 @@ import "../styles/mobileNavbar.css";
 function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  useEffect(() => {
+    document.body.classList.add("landing-page-active");
+    return () => document.body.classList.remove("landing-page-active");
+  }, []);
 
   return (
     <div className="landing-page">
