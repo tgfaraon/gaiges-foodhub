@@ -1,14 +1,3 @@
-/* Hide hamburger by default */
-.hamburger {
-    display: none;
-    font-size: 26px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #573026;
-    margin-left: auto;
-}
-
 /* Hide mobile menu by default */
 .mobile-menu {
     display: none;
