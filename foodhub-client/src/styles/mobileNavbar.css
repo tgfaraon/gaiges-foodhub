@@ -5,7 +5,9 @@
 
 /* Desktop-only elements */
 .desktop-only {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 /* Mobile-only elements */
@@ -17,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0px 32px;
