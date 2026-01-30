@@ -5,7 +5,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(99, 55, 44, 0.06);
   padding: 2rem;
-  max-width: 700px;
+  max-width: 600px;
   margin: 2rem auto;
   box-sizing: border-box;
   font-family: 'serif', 'Baskerville', 'Times New Roman', Georgia, serif;
@@ -57,7 +57,8 @@
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 2.5rem; /* reserve space for icon */
+  padding-right: 2.5rem;
+  /* reserve space for icon */
 }
 
 .password-wrapper button.toggle-visibility {
@@ -74,23 +75,30 @@
 
 /* === Remember Me + Forgot Link === */
 .remember-me {
-  display: inline-flex;        /* keep the pair inline */
-  align-items: center;         /* vertical alignment */
-  justify-content: flex-start; /* lock them to the left */
+  display: inline-flex;
+  /* keep the pair inline */
+  align-items: center;
+  /* vertical alignment */
+  justify-content: flex-start;
+  /* lock them to the left */
   font-weight: 600;
   color: #63372c;
   margin: 0.5rem 0 0 0;
 }
 
 .remember-me input[type="checkbox"] {
-  margin: 0 0.4rem 0 0;        /* small right margin so text hugs it */
-  width: auto;                 /* prevent stretching */
-  flex-shrink: 0;              /* stop drifting */
+  margin: 0 0.4rem 0 0;
+  /* small right margin so text hugs it */
+  width: auto;
+  /* prevent stretching */
+  flex-shrink: 0;
+  /* stop drifting */
 }
 
 .remember-me label {
   margin: 0;
-  display: inline-block;       /* keep text inline with checkbox */
+  display: inline-block;
+  /* keep text inline with checkbox */
 }
 
 .forgot-link {
