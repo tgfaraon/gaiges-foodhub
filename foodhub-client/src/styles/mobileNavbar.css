@@ -110,6 +110,7 @@
     }
 
     .hamburger {
+        display: block !important;
         margin-right: 12px;
         font-size: 26px;
         background: none;
