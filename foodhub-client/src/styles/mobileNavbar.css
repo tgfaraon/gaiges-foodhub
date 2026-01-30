@@ -50,6 +50,10 @@
     text-decoration: none;
 }
 
+.landing-page {
+    padding-top: 0 !important;
+}
+
 /* MOBILE RULES */
 @media (max-width: 400px) {
     .desktop-only {
@@ -99,5 +103,9 @@
 
     .navbar-left {
         flex-grow: 1;
+    }
+
+    body {
+        padding-top: 0 !important;
     }
 }

@@ -3,15 +3,21 @@ html {
 }
 
 :root {
-  --navbar-height: 64px; /* increased from 56px to make navbar slightly bigger */
+  --navbar-height: 64px;
+  /* increased from 56px to make navbar slightly bigger */
 }
 
 body {
-  background-color: rgb(212, 191,157);
+  background-color: rgb(212, 191, 157);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  padding-top: var(--navbar-height); /* reserve space equal to navbar height */
+  padding-top: var(--navbar-height);
+  /* reserve space equal to navbar height */
+}
+
+.landing-page {
+  padding-top: 0 !important;
 }
 
 .header {
@@ -30,7 +36,7 @@ body {
 }
 
 .header-container {
-  color: rgb(212, 191,157);
+  color: rgb(212, 191, 157);
   font-size: clamp(1.5em, 4vw, 2.5em);
   margin: 0;
   margin-left: 0;
@@ -74,46 +80,54 @@ body {
   transition: all 0.3s ease;
   font-weight: 800;
   text-transform: uppercase;
-  position: relative; /* ensure button creates stacking context */
-  z-index: 2;          /* sit above background/overlays */
+  position: relative;
+  /* ensure button creates stacking context */
+  z-index: 2;
+  /* sit above background/overlays */
 }
 
 .header button:hover {
   background-color: rgb(92, 58, 48);
-  color: rgb(212, 191,157);
+  color: rgb(212, 191, 157);
   transform: scale(1.05) translateY(-2px);
   /* removed glowing box-shadow to eliminate brown/orange box */
   box-shadow: none;
 }
 
 .about {
-  min-height: 60vh; /* let header occupy space, about can grow */
+  min-height: 60vh;
+  /* let header occupy space, about can grow */
   background-color: rgb(212, 191, 157);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.5rem 1rem; /* add internal spacing instead of forcing viewport height */
-  background-color: rgb(212, 191,157); /* keep background consistent */
+  padding: 2.5rem 1rem;
+  /* add internal spacing instead of forcing viewport height */
+  background-color: rgb(212, 191, 157);
+  /* keep background consistent */
   box-sizing: border-box;
 }
 
 .about-container {
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* align children to their bottom edges so images line up with paragraphs */
+  align-items: flex-end;
+  /* align children to their bottom edges so images line up with paragraphs */
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
   gap: 2rem;
   box-sizing: border-box;
-  flex-direction: row; /* ensure row layout: image left, text right */
+  flex-direction: row;
+  /* ensure row layout: image left, text right */
 }
 
 /* ensure text sits to the right of the image with breathing room */
 .about-text {
   display: inline-block;
   color: #63372c;
-  margin-left: 1.5rem; /* reduced from large value */
+  margin-left: 1.5rem;
+  /* reduced from large value */
   font-family: 'serif', 'baskerville', 'Times New Roman', 'Georgia', sans-serif, Courier, monospace;
   font-size: 1.15rem;
   max-width: 720px;
@@ -122,18 +136,23 @@ body {
 
 /* about-image column: push images toward the bottom so bottoms align with text */
 .about-image {
-  flex: 0 0 42%;      /* slightly narrower column */
-  max-width: 480px;   /* reduce max width */
+  flex: 0 0 42%;
+  /* slightly narrower column */
+  max-width: 480px;
+  /* reduce max width */
   display: flex;
   flex-direction: column;
-  gap: 3rem;        /* smaller gap between stacked images */
-  justify-content: flex-end; /* align image stack to the bottom */
+  gap: 3rem;
+  /* smaller gap between stacked images */
+  justify-content: flex-end;
+  /* align image stack to the bottom */
 }
 
 /* make stacked images a slightly smaller responsive box and crop by cover */
 .about-image img {
   width: 100%;
-  height: clamp(180px, 30vw, 420px); /* slightly smaller responsive height */
+  height: clamp(180px, 30vw, 420px);
+  /* slightly smaller responsive height */
   object-fit: cover;
   display: block;
   border-radius: 6px;
@@ -147,9 +166,9 @@ body {
   color: #63372c;
 }
 
-.about-text .lists { 
-    padding-left: 0; 
-    list-style: none; 
+.about-text .lists {
+  padding-left: 0;
+  list-style: none;
 }
 
 .about-text h2 {
@@ -184,7 +203,8 @@ body {
 
 .subscribe-hero p {
   text-align: center;
-  font-size: 1.2rem; /* bumped up from 1rem */
+  font-size: 1.2rem;
+  /* bumped up from 1rem */
   color: #63372c;
   margin: 0 auto 1.5rem;
   max-width: 700px;
@@ -234,7 +254,8 @@ body {
 }
 
 .progress-fill {
-  background-color: #4caf50; /* green bar */
+  background-color: #4caf50;
+  /* green bar */
   height: 100%;
   display: flex;
   align-items: center;
@@ -251,7 +272,8 @@ body {
 
 .dashboard-sidebar {
   position: absolute;
-  top: 190px; /* match header height */
+  top: 190px;
+  /* match header height */
   left: 0;
   width: 440px;
   display: flex;
@@ -273,7 +295,8 @@ body {
 /* === Login page left images (same measurements) === */
 .login-images-left {
   position: absolute;
-  top: 70px; /* adjust based on header height */
+  top: 70px;
+  /* adjust based on header height */
   left: 0;
   width: 400px;
   display: flex;
@@ -294,6 +317,7 @@ body {
 
 /* === Responsive override: hide side images on small screens === */
 @media (max-width: 880px) {
+
   .dashboard-sidebar,
   .login-images-left {
     display: none !important;
@@ -392,7 +416,7 @@ body {
 }
 
 .explore-toggle:focus {
-  outline: 2px solid rgba(99,55,44,0.2);
+  outline: 2px solid rgba(99, 55, 44, 0.2);
   outline-offset: 2px;
 }
 
@@ -436,7 +460,9 @@ body {
   width: 100%;
 }
 
-#explore #nav-links li { list-style: none; }
+#explore #nav-links li {
+  list-style: none;
+}
 
 #explore #nav-links a {
   display: inline-block;
@@ -447,7 +473,8 @@ body {
 @media (min-width: 881px) {
   .explore .nav-links {
     position: absolute;
-    top: calc(100% + 8px);   /* sits just below the Explore button */
+    top: calc(100% + 8px);
+    /* sits just below the Explore button */
     right: 0;
     width: 220px;
     background: rgb(212, 191, 157);
@@ -478,7 +505,11 @@ body {
 
 /* === Explore Dropdown (Mobile) === */
 @media (max-width: 880px) {
-  .explore { display: none; } /* hide Explore on mobile to avoid duplicate controls */
+  .explore {
+    display: none;
+  }
+
+  /* hide Explore on mobile to avoid duplicate controls */
 }
 
 /* Right-side actions (CTA + login) */
