@@ -42,11 +42,8 @@ function LandingPage() {
         {/* LEFT SIDE: Logo only */}
         <div className="navbar-left">
           <Link className="logo" to="/">Gaige's Food Hub</Link>
-          {/* RIGHT SIDE: Hamburger + Desktop nav */}
-          {/* MOBILE HAMBURGER */}
           <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
         </div>
-
         {/* MOBILE MENU */}
         {menuOpen && (
           <div className="mobile-menu mobile-only">
