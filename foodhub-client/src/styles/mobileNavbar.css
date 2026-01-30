@@ -63,7 +63,7 @@
 
     .hamburger {
         font-size: 24px;
-        margin-right: 8px;
+        margin-right: 12px;
     }
 
     .mobile-only {
@@ -88,5 +88,10 @@
         text-decoration: none;
         color: #573026;
         font-weight: 500;
+    }
+
+    .navbar {
+        justify-content: space-between;
+        padding: 12px 16px;
     }
 }
