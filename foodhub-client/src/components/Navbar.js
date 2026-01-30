@@ -2,13 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React from "react";
 
-import "../styles/mobileNavbar.css";
-
 export default function Navbar({ account }) {
   const [exploreOpen, setExploreOpen] = useState(false);
   const [memberOpen, setMemberOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const exploreRef = useRef(null);
   const memberRef = useRef(null);
@@ -60,26 +56,12 @@ export default function Navbar({ account }) {
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
-      {/* LEFT SIDE: Hamburger + Logo */}
-      <div className="navbar-left">
-        <button className="hamburger mobile-only" onClick={toggleMenu}>☰</button>
-        <Link className="logo" to="/">Gaige's Food Hub</Link>
-      </div>
+      {/* Logo */}
+      <Link className="logo" to="/">Gaige's Food Hub</Link>
 
-      {/* MOBILE MENU DROPDOWN */}
-      {menuOpen && (
-        <div className="mobile-menu mobile-only">
-          <Link to="/" onClick={toggleMenu}>Home</Link>
-          <Link to="/contact" onClick={toggleMenu}>Contact</Link>
-          <Link to="/register" onClick={toggleMenu}>Register</Link>
-          <Link to="/login" onClick={toggleMenu}>Login</Link>
-        </div>
-      )}
-
-      {/* RIGHT SIDE: Explore + Member */}
       <div className="nav-actions">
         {/* Explore dropdown */}
-        <div className="explore desktop-only" ref={exploreRef}>
+        <div className="explore" ref={exploreRef}>
           <button
             type="button"
             className="explore-toggle"
@@ -90,7 +72,8 @@ export default function Navbar({ account }) {
             Explore ▾
           </button>
           <ul
-            id="nav-links" className={`nav-links ${exploreOpen ? "" : "hidden"}`}
+            id="nav-links"
+            className={`nav-links ${exploreOpen ? "" : "hidden"}`}
             role="menubar"
           >
             <li><Link to="/">Home</Link></li>
@@ -155,4 +138,4 @@ export default function Navbar({ account }) {
       </div>
     </nav>
   );
-} 
+}
