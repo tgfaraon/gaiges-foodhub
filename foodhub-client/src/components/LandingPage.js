@@ -56,7 +56,7 @@ function LandingPage() {
         )}
 
         {/* DESKTOP NAVIGATION */}
-        <div className="desktop-only">
+        <div className="navbar-right desktop-only">
           <div className="explore">
             <button className="explore-toggle">Explore ▾</button>
             <ul className="nav-links">

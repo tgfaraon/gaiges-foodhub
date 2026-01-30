@@ -25,6 +25,13 @@
     padding: 0px 32px;
 }
 
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 32px;
+}
+
 .navbar-left {
     flex: 1;
     max-width: 1200px;
