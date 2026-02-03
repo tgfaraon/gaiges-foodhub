@@ -5,42 +5,33 @@ Gaige’s Food Hub transforms cooking lessons into an engaging, gamified learnin
 
 ✨ Features
 Learning Experience
-Structured Lessons with titles, sections, and rich content
 
-Embedded Media (YouTube videos, attachments, images)
-
-Interactive Quizzes
-
-Free‑text answers with AI‑assisted grading
-
-Keyword validation
-
-Multiple‑choice support
+•  Structured Lessons with titles, sections, and rich content
+•  Embedded Media (YouTube videos, attachments, images)
+•  Interactive Quizzes
+  °  Free‑text answers with AI‑assisted grading
+  °  Keyword validation
+  °  Multiple‑choice support
 
 Progress & Motivation
-Progress Tracking (completion %, streaks, lesson unlocks)
 
-Gamification (badges, streaks, unlockable recipes)
-
-Personalized Certificates (view + download)
+•  Progress Tracking (completion %, streaks, lesson unlocks)
+•  Gamification (badges, streaks, unlockable recipes)
+•  Personalized Certificates (view + download)
 
 Admin Tools
-Lesson editor
 
-Quiz manager
-
-Certificate issuing
-
-Member progress dashboard
+•  Lesson editor
+•  Quiz manager
+•  Certificate issuing
+•  Member progress dashboard
 
 Security & Infrastructure
-JWT Authentication with role‑based access
 
-Secure PDF generation for certificates
-
-Email automation for certificate delivery
-
-Fully deployed frontend + backend
+•  JWT Authentication with role‑based access
+•  Secure PDF generation for certificates
+•  Email automation for certificate delivery
+•  Fully deployed frontend + backend
 
 🛠 Tech Stack
 Frontend: React, JavaScript, HTML, CSS
@@ -74,15 +65,12 @@ EMAIL_PASS=
 <img width="1914" height="1049" alt="Screenshot 2026-02-03 145422" src="https://github.com/user-attachments/assets/feec4f2a-2d25-443c-ab20-1c2913bb554b" />
 
 🧭 Roadmap
-Mobile‑first redesign
 
-AI‑generated personalized feedback
-
-Additional lesson modules
-
-Dark mode
-
-Social features (share progress, compare streaks)
+•  Mobile‑first redesign
+•  AI‑generated personalized feedback
+•  Additional lesson modules
+•  Dark mode
+•  Social features (share progress, compare streaks)
 
 🧠 Why I Built This
 Gaige’s Food Hub was designed to make cooking education more accessible, structured, and confidence‑building. The platform blends curriculum design, UX thinking, and full‑stack engineering to create a learning experience that feels both fun and meaningful.
