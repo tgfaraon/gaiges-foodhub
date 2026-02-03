@@ -1,41 +1,91 @@
-# Gaige's Food Hub 🍳
+🍳 Gaige’s Food Hub
+A full‑stack culinary learning platform built for structured, interactive cooking education.
 
-Gaige's Food Hub is a full‑stack cooking training platform designed to make culinary learning interactive, structured, and fun.  
-It combines lesson modules, quizzes, progress tracking, and gamification features like streaks, badges, and unlockable recipes.
+Gaige’s Food Hub transforms cooking lessons into an engaging, gamified learning experience. Learners progress through structured modules, complete quizzes, earn badges, unlock recipes, and receive certificates — all supported by a robust admin dashboard and secure backend.
 
----
+✨ Features
+Learning Experience
+Structured Lessons with titles, sections, and rich content
 
-## ✨ Features
+Embedded Media (YouTube videos, attachments, images)
 
-- **Structured Lessons**: Each lesson is broken into clear sections with titles and content for refined learning.
-- **Interactive Quizzes**: Supports free‑text answers with AI grading, keyword validation, and multiple‑choice options.
-- **Progress Tracking**: Learners can see streaks, completion percentages, and lesson unlocks.
-- **Gamification**: Badges and streaks motivate learners, with special recipes unlocked when achievements are earned.
-- **Admin Tools**: Lesson editor and quiz manager for instructors to create and update content.
-- **Secure Authentication**: Role‑based access for learners and admins.
-- **Media Integration**: Lessons can embed YouTube videos and attachments for richer content.
+Interactive Quizzes
 
----
+Free‑text answers with AI‑assisted grading
 
-## 🛠 Tech Stack
+Keyword validation
 
-- **Frontend**: React, HTML, CSS, JavaScript
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB with Mongoose
-- **Authentication**: JWT‑based middleware
-- **AI Integration**: Custom grading utility for free‑text quiz answers
-- **Deployment**: Configurable for local dev and cloud hosting
+Multiple‑choice support
 
----
+Progress & Motivation
+Progress Tracking (completion %, streaks, lesson unlocks)
 
-## 🚀 Getting Started
+Gamification (badges, streaks, unlockable recipes)
 
-### Prerequisites
-- Node.js (v18+ recommended)
-- MongoDB (local or cloud instance)
+Personalized Certificates (view + download)
 
-### Installation
-```bash
+Admin Tools
+Lesson editor
+
+Quiz manager
+
+Certificate issuing
+
+Member progress dashboard
+
+Security & Infrastructure
+JWT Authentication with role‑based access
+
+Secure PDF generation for certificates
+
+Email automation for certificate delivery
+
+Fully deployed frontend + backend
+
+🛠 Tech Stack
+Frontend: React, JavaScript, HTML, CSS
+Backend: Node.js, Express.js
+Database: MongoDB + Mongoose
+Auth: JWT middleware
+Other: REST APIs, responsive design, UX‑focused architecture
+
+🚀 Getting Started
+Prerequisites
+Node.js  (v18+)
+
+MongoDB (local or cloud instance)
+
+Installation
+bash
 git clone https://github.com/tgfaraon/gaiges-foodhub.git
 cd gaiges-foodhub
 npm install
+
+Environment Variables
+
+MONGO_URI=
+JWT_SECRET=
+EMAIL_USER=
+EMAIL_PASS=
+
+📸 Screenshots
+<img width="1890" height="909" alt="Screenshot 2026-02-03 144931" src="https://github.com/user-attachments/assets/3ddd15a7-6780-45ac-9d72-406e957bac1b" />
+<img width="1898" height="906" alt="Screenshot 2026-02-03 144946" src="https://github.com/user-attachments/assets/5f3915e7-0fef-4f83-9dc6-8234d2e94f23" />
+<img width="1914" height="1049" alt="Screenshot 2026-02-03 145422" src="https://github.com/user-attachments/assets/feec4f2a-2d25-443c-ab20-1c2913bb554b" />
+
+🧭 Roadmap
+Mobile‑first redesign
+
+AI‑generated personalized feedback
+
+Additional lesson modules
+
+Dark mode
+
+Social features (share progress, compare streaks)
+
+🧠 Why I Built This
+Gaige’s Food Hub was designed to make cooking education more accessible, structured, and confidence‑building. The platform blends curriculum design, UX thinking, and full‑stack engineering to create a learning experience that feels both fun and meaningful.
+
+📬 Contact
+If you’d like to collaborate or discuss the project, feel free to reach out.
